@@ -1,1 +1,13 @@
-# ML---Study
+# ML-Study 
+
+A series of Jupyter Notebooks with detailed explanation of ML algorithms and implementations. 
+
+## Structure: 
+ - [Machine Learning: ](/ML) ... 
+ - [Computer Vision: ](/CV) ... 
+ - [Natural Language Processing: ](/NLP) ... 
+ - [Others](/others) ... 
+
+## References
+ - Geron, A. (2019). Hands-on machine learning with Scikit-Learn, Keras and TensorFlow: concepts, tools, and techniques to build intelligent systems (2nd ed.). O’Reilly.
+ - Bishop, Christopher M. (2006). Pattern recognition and machine learning. New York :Springer.
