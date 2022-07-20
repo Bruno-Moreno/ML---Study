@@ -22,3 +22,4 @@ $ pip install -r requirements.txt
 ## References
  - Geron, A. (2019). Hands-on machine learning with Scikit-Learn, Keras and TensorFlow: concepts, tools, and techniques to build intelligent systems (2nd ed.). O’Reilly.
  - Bishop, Christopher M. (2006). Pattern recognition and machine learning. New York :Springer.
+ - Tobar, F. (2022). Aprendizaje de Máquinas. GAMES-UChile/Curso-Aprendizaje-de-Maquinas
