@@ -130,3 +130,7 @@ dmypy.json
 
 # Folders
 references/
+
+# MAC
+.DS_STORE
+*.rtf
