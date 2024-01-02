@@ -5,11 +5,13 @@ A series of Jupyter Notebooks with detailed explanation of ML algorithms and imp
 ## Instalation: 
 
 [**Python>=3.9**](https://www.python.org/) is required with all
-[requirements.txt](requirements.txt)
+[requirements.txt](requirements.txt) for the [ML](/ML) codes. 
+
+The other notebooks require a specific Python version and libraries. 
 
 ```bash
-$ git clone https://github.com/Bruno-Moreno/ML-Study.git
-$ cd ML-Study
+$ git clone https://github.com/Bruno-Moreno/ai-algorithms.git
+$ cd ai-algorithms
 $ pip install -r requirements.txt
 ```
 
