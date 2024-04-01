@@ -1,11 +1,11 @@
 # AI-Algorithms
 
-A series of Jupyter Notebooks with detailed explanation of ML algorithms and implementations. 
+A series of Jupyter Notebooks with detailed explanation of ML algorithm, implementations and everything related with DS. 
 
 ## Instalation: 
 
 [**Python>=3.9**](https://www.python.org/) is required with all
-[requirements.txt](requirements.txt) for the [ML](/ML) codes. 
+[requirements.txt](requirements.txt).
 
 The other notebooks require a specific Python version and libraries. 
 
@@ -21,6 +21,7 @@ $ pip install -r requirements.txt
  - [Generative](/GEN) ...
  - [Natural Language Processing: ](/NLP) ... 
  - [Others](/Others) ... 
+ - [STAT](/STAT) ...
 
 ## References
  - Geron, A. (2019). Hands-on machine learning with Scikit-Learn, Keras and TensorFlow: concepts, tools, and techniques to build intelligent systems (2nd ed.). O’Reilly.
