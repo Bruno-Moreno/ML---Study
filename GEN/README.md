@@ -1,6 +1,5 @@
 # Generative AI 
 
-To do: 
+ - [ ] Diffusion Model Notebook.
+ - [ ] Encoder-Decoder explanation. 
 
- - Finish the Diffusion Model Notebook.
- - Add the encoder-decoder explanation. 

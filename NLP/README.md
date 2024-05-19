@@ -1,7 +1,8 @@
 # Natural Language Processing 
 
- - Finish the Translation Task Notebook. 
- - Create the Attention Mechanism Notebook.
- - Create the Transformer Mechanism Notebook. 
- - Add others NLP tasks.
+ - [x] Embeddings Notebook.
+ - [ ] Attention Mechanism Notebook.
+ - [ ] Transformer Mechanism Notebook. 
+ - [ ] Translation Task Notebook. 
+ - [ ] Add others NLP tasks.
  

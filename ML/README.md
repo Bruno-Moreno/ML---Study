@@ -1,5 +1,7 @@
 # Machine Learning
 
-To do: 
-
- - Create a GBC/XGBOOST Algorithm Notebook.
+ - [x] Naive Bayes Notebook. 
+ - [x] Support Vector Machines Notebook.  
+ - [x] Decision Trees Notebook. 
+ - [x] Random Forest Notebook.
+ - [ ] GBC/XGBOOST Notebook. 
