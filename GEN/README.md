@@ -2,7 +2,7 @@
 
  - [ ] Diffusion Model Notebook.
  - [ ] Encoder - Decoder Notebook.
- - [ ] Transformer (BERT) Notebook. 
  - [x] Transformer from Scratch Notebook. 
+ - [ ] Transformer (BERT) Notebook. 
  - [ ] Image Captioning Notebook. 
 
