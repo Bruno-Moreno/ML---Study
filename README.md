@@ -11,7 +11,7 @@ PENDING
 ### Instalation: 
 
 [**Python>=3.9**](https://www.python.org/) is required with all
-[requirements.txt](requirements.txt).
+[notebooks/requirements.txt](requirements.txt).
 
 The other notebooks require a specific Python version and libraries. 
 
@@ -22,12 +22,12 @@ $ pip install -r requirements.txt
 ```
 
 ### Structure: 
- - [Machine Learning: ](notebooks/ML) ... 
- - [Computer Vision ](notebooks/CV) ...
- - [Generative AI](notebooks/GEN) ...
- - [Natural Language Processing: ](notebooks/NLP) ... 
- - [Others](notebooks/Others) ... 
- - [STATS](notebooks/STATS) ...
+ - [Machine Learning: ](notebooks/ML) 
+ - [Computer Vision ](notebooks/CV)
+ - [Generative AI](notebooks/GEN)
+ - [Natural Language Processing: ](notebooks/NLP) 
+ - [STATS](notebooks/STATS)
+ - [Others](notebooks/Others) 
 
 ## References
  - Geron, A. (2019). Hands-on machine learning with Scikit-Learn, Keras and TensorFlow: concepts, tools, and techniques to build intelligent systems (2nd ed.). O’Reilly.
