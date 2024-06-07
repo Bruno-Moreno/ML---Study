@@ -29,9 +29,18 @@ $$IG(S,D) = H(S) - \sum_{V \in D}\frac{|V|}{|D|}H(V)$$
 Donde el primer término es la entropía antes del split y el segundo término es la suma de las entropías después del split. Podemos iterar hasta que la Information Gain no tenga modificaciones (es decir, llegar a los nodos puros) pero esto podría traer problemas de \textit{overfitting}, en general esto se regula con la profundidad del árbol y escogiendo en cada iteración, la división que maximiza el IG. 
 
 \begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
     \center
     \includegraphics[scale=0.3]{notebooks/ML/img/decision_tree_data.png}
     \caption{Decision Tree Boundaries}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+    \center
+    \includegraphics[scale=0.4]{notebooks/ML/img/max_depth_decision_tree.png}
+    \caption{Max Depth and Accuracy}
+\end{subfigure}
+\caption{Decision Tree Implementation}
+\label{fig:fig}
 \end{figure}
 
 En vez de la entropía, es posible usar otro indicador como el \textbf{Gini Index} definido como: 
