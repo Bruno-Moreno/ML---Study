@@ -1,6 +1,6 @@
 # AI-Algorithms
 
-A series of Jupyter Notebooks with detailed explanation of ML algorithm, implementations and everything related with DS. 
+A series of Jupyter Notebooks with detailed explanation of ML algorithms, implementations and everything related with DS. 
 
 ## Instalation: 
 
@@ -21,7 +21,7 @@ $ pip install -r requirements.txt
  - [Generative AI](/GEN) ...
  - [Natural Language Processing: ](/NLP) ... 
  - [Others](/Others) ... 
- - [STAT](/STAT) ...
+ - [STATS](/STATS) ...
 
 ## References
  - Geron, A. (2019). Hands-on machine learning with Scikit-Learn, Keras and TensorFlow: concepts, tools, and techniques to build intelligent systems (2nd ed.). O’Reilly.
