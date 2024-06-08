@@ -11,7 +11,7 @@ PENDING
 ### Instalation: 
 
 [**Python>=3.9**](https://www.python.org/) is required with all
-[notebooks/requirements.txt](requirements.txt).
+[requirements.txt](notebooks/requirements.txt).
 
 The other notebooks require a specific Python version and libraries. 
 
@@ -22,10 +22,10 @@ $ pip install -r requirements.txt
 ```
 
 ### Structure: 
- - [Machine Learning: ](notebooks/ML) 
- - [Computer Vision ](notebooks/CV)
+ - [Machine Learning](notebooks/ML) 
+ - [Computer Vision](notebooks/CV)
  - [Generative AI](notebooks/GEN)
- - [Natural Language Processing: ](notebooks/NLP) 
+ - [Natural Language Processing](notebooks/NLP) 
  - [STATS](notebooks/STATS)
  - [Others](notebooks/Others) 
 
