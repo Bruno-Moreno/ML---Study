@@ -6,7 +6,7 @@ Consideremos un conjunto de datos $X = (x_1, \dots , x_N)$ donde para cada $i \i
 
 Un árbol de decisión es un modelo de aprendizaje \textbf{supervisado} utilizado para problemas de \textbf{regresión} y \textbf{clasificación}. El objetivo es aprender simples reglas de decisión a partir de las features. 
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \center
     \includegraphics[scale=0.25]{notebooks/ML/img/decision_tree_diagram.png}
     \caption{Decision Tree Diagram}
@@ -47,3 +47,14 @@ En vez de la entropía, es posible usar otro indicador como el \textbf{Gini Inde
 $$G(p) = 1 - \sum_{j=1}^L p_j^2$$
 
 \subsection{Random Forest}
+
+El algoritmo de \textit{Random Forest} es un método de \textbf{ensamblaje} basado en \textit{Decision Trees}. Este modelo, ajusta múltiples árboles de decisión entrenados sobre muestras aleatorias de \textit{features} del dataset y promedia los resultados para mejorar la precisión y controlar el \textit{overfitting}.
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.25]{notebooks/ML/img/random_forest_diagram.png}
+    \caption{Random Forest Diagram}
+\end{figure}
+
+La selección del label se puede realizar ya sea por \textit{Majority Voting}, \textit{Simple Average} o \textit{Weighted Average}.
+
