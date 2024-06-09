@@ -1,0 +1,33 @@
+name: Compile LaTeX and upload PDF
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Compile LaTeX
+      uses: xu-cheng/latex-action@v2
+      with:
+        root_file: ai_algorithms.tex  # Name of the Tex File
+
+    - name: Upload PDF to Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: compiled-pdf
+        path: ai_algorithms.pdf  # Name of the Tex File
+
+    - name: Commit and push compiled PDF
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git add ai_algorithms.pdf
+        git commit -m "Auto-commit: Compiled PDF"
+        git push
