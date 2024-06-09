@@ -48,7 +48,25 @@ $$G(p) = 1 - \sum_{j=1}^L p_j^2$$
 
 \subsection{Random Forest}
 
-El algoritmo de \textit{Random Forest} es un método de \textbf{ensamblaje} basado en \textit{Decision Trees}. Este modelo, ajusta múltiples árboles de decisión entrenados sobre muestras aleatorias de \textit{features} del dataset y promedia los resultados para mejorar la precisión y controlar el \textit{overfitting}.
+\subsubsection{Ensemble Methods}
+
+Los \textbf{métodos de ensamblaje} son aquellos en los que se combinan múltiples estimadores entrenados sobre los datos para generar una predicción más robusta (menor varianza) y generalizada. La predicción final se puede realizar por \textit{Majority Voting}, \textit{Simple Average} o \textit{Weighted Average}.
+
+Existen 3 estrategias principales en los métodos de ensamblaje: 
+\begin{enumerate}
+    \item \textbf{Bagging}: Corresponde a una abreviación de \textit{Bootstrap Aggregating}, esta estrategia entrena cada estimador base con una \textbf{muestra con reemplazo} de ejemplos del conjunto de entrenamiento. 
+    \item \textbf{Boosting}: Esta estrategia se basa en entrenar secuencialmente estimadores base débiles que \textbf{aprenden de los errores del anterior} para crear un estimador robusto.
+    \item \textbf{Stacking}: Este método combina las predicciones de múltiples estimadores fuertes en una sola. 
+\end{enumerate}
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.25]{notebooks/ML/img/bagging_and_boosting_diagram.png}
+    \caption{Bagging and Boosting Diagram}
+\end{figure}
+
+
+El algoritmo de \textit{Random Forest} es un método \textbf{supervisado de ensamblaje} basado en \textit{Decision Trees}. Este, utiliza la estrategia de \textbf{bagging} para entrenar cada árbol de decisión sobre muestras con reemplazo del conjunto de entrenamiento y además, cada árbol es entrenado sobre un \textbf{subconjunto aleatorio de features} para asegurar que no haya similitud entre ellos. Ambas estrategias permiten mejorar la precisión del modelo y controlar el  \textit{overfitting}.
 
 \begin{figure}[H]
     \center
@@ -56,5 +74,5 @@ El algoritmo de \textit{Random Forest} es un método de \textbf{ensamblaje} basa
     \caption{Random Forest Diagram}
 \end{figure}
 
-La selección del label se puede realizar ya sea por \textit{Majority Voting}, \textit{Simple Average} o \textit{Weighted Average}.
+\subsection{Support Vector Machines}
 
