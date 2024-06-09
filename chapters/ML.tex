@@ -74,6 +74,20 @@ El algoritmo de \textit{Random Forest} es un método \textbf{supervisado de ensa
     \caption{Random Forest Diagram}
 \end{figure}
 
+\subsection{Naive Bayes}
+
+
+
+
+
+
+
+
+
+
+
+
+
 \subsection{Support Vector Machines}
 
 Las \textit{Support Vector Machines} o SVM, son modelos de aprendizaje \textbf{supervisados} que pueden ser usados para problemas de clasificación y regresión. Se construyen a partir de la búsqueda de un hiper-plano separador y vectores de soporte que maximizan la distancia entre las clases. 
@@ -120,7 +134,7 @@ Equivalente a
 \end{equation*}
 Este problema se resuelve utilizando el \textbf{dual} (\textit{quadratic programming}) y es fundamental para la extensión no-lineal de la SVM (\textit{Kernel Trick}). 
 
-\subsubsection{Soft Margnin}
+\subsubsection{Soft Margin}
 
 Los datos son usualmente no linealmente separables, por lo que hay que permitir un error en la clasificación de ciertos puntos (\textit{soft margin}). Este cambio en el problema de optimización se reduce a la siguiente regularización:
 
@@ -171,6 +185,11 @@ Algunos ejemplos de \textit{kernels} que se pueden utilizar son:
     \item \textbf{Sigmoid Kernel}: $K(x,y) = \text{tanh}(ax^{\top}y + b)$
 \end{enumerate}
 
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.35]{notebooks/ML/img/kernel_decision_boundaries.png}
+    \caption{Kernel Decision Boundaries}
+\end{figure}
 
 
 
