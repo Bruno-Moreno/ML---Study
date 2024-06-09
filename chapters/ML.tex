@@ -76,3 +76,102 @@ El algoritmo de \textit{Random Forest} es un método \textbf{supervisado de ensa
 
 \subsection{Support Vector Machines}
 
+Las \textit{Support Vector Machines} o SVM, son modelos de aprendizaje \textbf{supervisados} que pueden ser usados para problemas de clasificación y regresión. Se construyen a partir de la búsqueda de un hiper-plano separador y vectores de soporte que maximizan la distancia entre las clases. 
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.3]{notebooks/ML/img/svm_diagram.png}
+    \caption{SVM Diagram}
+\end{figure}
+
+Consideremos el caso binario donde $Y \in \{0,1\}^n$ El hiper-plano separador está definido por 
+$$ H = \{ x \in \mathbb{R}^n | w^{\top}x + b = 0 \} $$ 
+Donde $w$ es el vector perpendicular al hiper-plano y $b$ un \textit{offset}. 
+De esta forma si $w^{\top}x + b > 0$ quiere decir que $x$ pertenece a la clase 1 y $w^{\top}x + b < 0$ que $x$ pertenece a la clase 0, escrito de otra forma 
+$$y_i(w^{\top}x+b) \geq 1 \quad \forall i \in \{ 1 , \dots , N \}$$
+En el caso de un problema de clasificación linealmente separable, existen infinitos hiper-planos que satisfacen las condiciones anteriores (basta con rotar ligeramente el hiper-plano) por lo que vamos a exigir además las siguientes condiciones sobre vectores de soporte $x_{-}$ y $x_{+}$. 
+
+\begin{equation*}
+\begin{split}
+w^{\top}x_{+} + b = 1 \\
+w^{\top}x_{-} + b = -1
+\end{split}
+\end{equation*} 
+
+Notar entonces que con esta condición, es posible calcular el ancho $m$ de la separación entre el hiper-plano y el vector de soporte. Recordemos que la distancia $m$ de un vector $x$ a un hiperplano con vector normal $w$ viene dada por 
+$$m = \frac{|\langle w, x \rangle|}{||w||}$$
+Considerando la definición de los vectores de soporte, se tiene que 
+$$2m = \frac{|\langle w, x_{+} \rangle|}{||w||} + \frac{|\langle w, x_{-} \rangle|}{||w||} = \frac{|1-b|}{||w||} + \frac{|-1-b|}{||w||}$$
+Además el \textit{offset} $b \in [0,1]$ por la definición anterior, así 
+$$m = \frac{1}{||w||}$$
+Finalmente, el problema de optimización quedaría de la siguiente forma 
+\begin{equation*}
+\begin{aligned}
+\max_{\omega , b} \quad \frac{1}{||w||} \\
+\textrm{s.t.} \quad y_i(w^{\top}x_i + b ) \geq 1 , \forall i \in \{ 1 , \dots N \}
+\end{aligned}
+\end{equation*}
+Equivalente a 
+\begin{equation*}
+\begin{aligned}
+\min_{\omega , b} \quad \frac{1}{2}||w||^2 \\
+\textrm{s.t.} \quad y_i(w^{\top}x_i + b ) \geq 1 , \forall i \in \{ 1 , \dots N \}
+\end{aligned}
+\end{equation*}
+Este problema se resuelve utilizando el \textbf{dual} (\textit{quadratic programming}) y es fundamental para la extensión no-lineal de la SVM (\textit{Kernel Trick}). 
+
+\subsubsection{Soft Margnin}
+
+Los datos son usualmente no linealmente separables, por lo que hay que permitir un error en la clasificación de ciertos puntos (\textit{soft margin}). Este cambio en el problema de optimización se reduce a la siguiente regularización:
+
+\begin{equation*}
+\begin{aligned}
+\min_{\omega , b} \quad \frac{1}{2}||w||^2 + C \sum_{i=1}^N \xi_i  \\
+\textrm{s.t.} \quad y_i(w^{\top}x_i + b ) \geq 1  - \xi_i, \forall i \in \{ 1 , \dots N \} \hspace{0.1cm} ,\hspace{0.1cm} \xi_i \geq 0
+\end{aligned}
+\end{equation*}
+
+\subsubsection{Kernel Trick}
+
+En la formulación del problema dual, la función objetivo requiere el cómputo del producto interno entre todos los puntos del conjunto de entrenamiento. Si buscamos proyectar nuestra data a una dimensión mayor (aplicar algún mapeo $\phi$ para hacer la separación posible), esto se puede realizar calculando los productos $ \langle \phi(x_i) , \phi(x_j) \rangle $ para todo $i$ y $j$.
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.5]{notebooks/ML/img/kernel_trick.png}
+    \caption{Kernel Trick}
+\end{figure}
+
+El paso fundamental del truco del kernel es que no es necesario conocer el mapeo $\phi$ explícitamente pues por el teorema de \textit{Mercer}
+$$
+K(x_i , x_j) = \langle \phi(x_i) , \phi(x_j) \rangle
+$$
+donde $K: X \times X \rightarrow \mathbb{R} $ es un kernel de \textit{Mercer} en un espacio de \textit{Hilbert} (posiblemente de dimensión infinita), por lo que solo basta que definamos $K$ para tener un posible mapeo de las características. 
+
+\subsubsection{Kernels}
+
+Para que un \textit{kernel} pueda utilizarse en el contexto de las SVM, es importante que cumpla con las condiciones de \textit{Mercer}: 
+\begin{itemize}
+    \item Symmetry: $K(x,y) = K(y,x) \quad \forall x,y$ 
+    \item Positive Semi-Definiteness: Para cualquier vector $c \in \mathbb{R}^n$, y $x_1 , \dots x_n$ una cantidad finita de puntos, se debe satisfacer que  
+    $$\sum_{ij}c_ix_jK(x_i,x_j) \geq 0$$
+\end{itemize}
+
+Algunos ejemplos de \textit{kernels} que se pueden utilizar son: 
+
+\begin{enumerate}
+    \item \textbf{Linear Kernel}: $K(x,y) = \langle x , y \rangle$. 
+    
+    El más útil cuando la data es linealmente separable. 
+    \item \textbf{Polynomial Kernel}: $K(x,y) = (x^{\top}y + c)^d$. 
+    
+    El parámetro $d$ controla el nivel de complejidad del kernel pero valores muy altos podrían llevar a \textit{overfitting}.
+    \item \textbf{Gaussian Radial Basis Function (RBF) Kernel}: $K(x,y) = e^{-\gamma||x-y||^2}$. 
+    
+    Este kernel es el más popular pues \textbf{mapea los datos a un espacio de dimensión infinita}. El parámetro $\gamma$ controla la complejidad de los \textit{decision boundaries} al agregar mayor o menor \textit{spread} al kernel. 
+    \item \textbf{Sigmoid Kernel}: $K(x,y) = \text{tanh}(ax^{\top}y + b)$
+\end{enumerate}
+
+
+
+
+
