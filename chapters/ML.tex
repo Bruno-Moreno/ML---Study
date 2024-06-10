@@ -76,7 +76,7 @@ El algoritmo de \textit{Random Forest} es un método \textbf{supervisado de ensa
 
 \subsection{Naive Bayes}
 
-
+Este modelo de aprendizaje \textbf{supervisado} puede ser utilizado para problemas de clasificación. Este algoritmo es una aplicación del teorema de \textit{Bayes} en el que se asume (\textit{Naive}) la independencia condicional entre los pares de features $x^j$ dado el valor del label $y$
 
 \begin{figure}[H]
     \center
@@ -84,17 +84,42 @@ El algoritmo de \textit{Random Forest} es un método \textbf{supervisado de ensa
     \caption{Naive Bayes Diagram}
 \end{figure}
 
+La formulación es la siguiente: 
+$$
+P(y | x^1 , \dots , x^M) = \frac{P(y)P(x^1 , \dots , x^M| y)}{P(x^1 , \dots , x^M)} = \frac{P(y)\prod_{j=1}^M P(x^j | y)}{P(x^1 , \dots , x^M)} \propto P(y)\prod_{j=1}^M  P(x^j | y)
+$$
+y la predicción se realiza según 
+$$
+\hat{y} = \text{argmax}_{y} P(y)\prod_{j=1}^M  P(x^j | y)
+$$
 
+\subsubsection{Gaussian Naive Bayes}
 
+Aquí consideramos que $x^{j} | y \sim \mathcal{N}(\mu_j , \sigma_j^2)$ , es decir, cada feature sigue una distribución normal según:
+$$
+P(x^j | y) = \frac{1}{\sqrt{2\pi\sigma_j^2}}\exp \left(- \frac{(x^j - \mu_j)^2}{2\sigma_j^2} \right )
+$$
+donde la media y varianza $\mu_j$ y $\sigma_j$ respectivamente, son calculados a través de la máxima verosimilitud, es decir, si $x_{i} = (x^{1}_i, x^{2}_i, \dots x^{M}_i)$ con $i \in \{1, \dots, N\}$ los datos, entonces
+$ \mu_{j} = \frac{1}{N}\sum_{i=1}^{N}x_{i}^{j}$ y $ \sigma_{j} = \frac{1}{N-1}\sum_{i=1}^{N}(x_{i}^{j}-\mu_{j})^2$. Notar que esto se debe calcular utilizando los datos de la clase respectiva $y$. 
 
+La definición anterior funciona bien con tipos de data numéricos. 
 
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=2]{notebooks/ML/img/gaussian_naive_bayes_diagram.png}
+    \caption{Gaussian Naive Bayes Diagram}
+\end{figure}
 
+\subsubsection{Multinomial Naive Bayes}
 
+Aquí consideramos que $x^j | y$ sigue una distribución multinomial donde los parámetros $(p_{j_1}, \dots , p_{j_k})$ de esta distribución son calculados según 
+$$
+p_{j_k} = \frac{N_{j_k} + \alpha}{N_j + \alpha}  
+$$
 
+Donde $N_{j_k}$ es la cantidad de veces que la categoría $k$ de la feature $j$ aparece en los datos con clase $y$ del conjunto de entrenamiento y $N_j = \sum_k N_{j_k}$. El parámetro $\alpha$ es un \textit{Smoothing Prior} para estabilidad numérica. 
 
-
-
-
+La definición anterior funciona bien con tipos de datos categóricos. 
 
 \subsection{Support Vector Machines}
 
