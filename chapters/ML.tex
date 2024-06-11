@@ -226,7 +226,7 @@ Algunos ejemplos de \textit{kernels} que se pueden utilizar son:
 
 \subsection{ARIMA}
 
-El modelo ARIMA hace referencia al \textit{Auto-Regressive Integrated Moving Average} y es un método estadístico para realizar \textit{forecasting} sobre series de tiempo que integra los siguientes conceptos:
+Arima es la abreviación de \textit{Auto-Regressive Integrated Moving Average} y es un método estadístico para realizar \textit{forecasting} sobre series de tiempo que integra los siguientes conceptos:
 
 \begin{enumerate}
     \item Toma en consideración patrones de crecimiento/decrecimiento en la serie de tiempo (\textit{Auto-Regressive}). 
@@ -243,10 +243,35 @@ Aquí $c$ es una constante y $e$ es un término de error. Los modelos de este ti
 \begin{itemize}
     \item $p$ es la cantidad de tiempos en que la variable es mirada al pasado (\textit{Lag}).
     \item $d$ es la cantidad de veces que la variable es diferenciada para producir una señal estacionaria. $d=0$ refiere a que la señal ya es estacionaria, $d=1$ es que la señal crece/decrece linealmente y $d=2$ es que la señal crece exponencialmente. 
-    \item $q$ representa la cantidad de \textit{Lag} para el término de error $e$, esto captura el \textit{Moving Average}.
+    \item $q$ representa la cantidad de \textit{lag} para el término de error $e$, esto captura el \textit{Moving Average}.
 \end{itemize}
 
-En la práctica, es posible determinar estos valores 
+
+En la práctica, es posible determinar el valor de $p$ a través del \textit{Partial Autocorrelation Plot}. Este gráfico muestra la relación de un valor en la serie de tiempo con \textbf{un solo lag}
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.5]{notebooks/ML/img/partial_autocorrelation.png}
+    \caption{Partial Autocorrelation Plot}
+\end{figure}
+El valor óptimo es el último punto después del cual todos los lags están dentro de las bandas azules (intervalos de confianza), en este caso $p=13$. 
+
+El valor de $d$ se puede calcular diferenciando la serie de tiempo hasta encontrar una serie estacionaria. Esto lo podemos medir con un test estadístico de estacionalidad (\textit{Augmented Dickey Fuller Test}).
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.5]{notebooks/ML/img/time_series_differentiation.png}
+    \caption{Time Series Differentiation Plot}
+\end{figure}
+
+Vemos que el $p$-valor en la segunda diferenciación ya es lo suficientemente pequeño para asumir estacionalidad en la serie de tiempo, así $d=2$. 
+
+Finalmente, para determinar el valor $q$ es posible ver el \textit{Autocorrelation Plot} que muestra la relación de un valor en la serie de tiempo con \textbf{todos los lags} anteriores. 
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.5]{notebooks/ML/img/autocorrelation.png}
+    \caption{Autocorrelation Plot}
+\end{figure}
+En este caso, el último valor anterior a que todos los \textit{Lag} caigan en la zona azul, es $q=12$.
 
 
 
