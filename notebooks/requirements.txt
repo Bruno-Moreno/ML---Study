@@ -3,3 +3,4 @@ scikit-learn==1.2.2
 numpy==1.24.2
 seaborn==0.13.2
 imblearn==0.12.3
+statsmodels==0.14.1
