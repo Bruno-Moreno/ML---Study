@@ -224,6 +224,30 @@ Algunos ejemplos de \textit{kernels} que se pueden utilizar son:
     \caption{Kernel Decision Boundaries}
 \end{figure}
 
+\subsection{ARIMA}
+
+El modelo ARIMA hace referencia al \textit{Auto-Regressive Integrated Moving Average} y es un método estadístico para realizar \textit{forecasting} sobre series de tiempo que integra los siguientes conceptos:
+
+\begin{enumerate}
+    \item Toma en consideración patrones de crecimiento/decrecimiento en la serie de tiempo (\textit{Auto-Regressive}). 
+    \item Estima tasa de crecimiento/decrecimiento (\textit{Integrated}).
+    \item Controla el ruido entre datos consecutivos en el tiempo (\textit{Moving Average}).
+\end{enumerate}
+
+La fórmula general para este tipo de modelos viene dada por 
+$$
+Y_t = c + \phi_1y^d_{t-1} + \dots + \phi_py^d_{t-p} + \theta_1e_{t-1} + \dots + \theta_q e_{t-q} + e_t
+$$
+Aquí $c$ es una constante y $e$ es un término de error. Los modelos de este tipo son escritos como ARIMA($p,d,q$) donde: 
+
+\begin{itemize}
+    \item $p$ es la cantidad de tiempos en que la variable es mirada al pasado (\textit{Lag}).
+    \item $d$ es la cantidad de veces que la variable es diferenciada para producir una señal estacionaria. $d=0$ refiere a que la señal ya es estacionaria, $d=1$ es que la señal crece/decrece linealmente y $d=2$ es que la señal crece exponencialmente. 
+    \item $q$ representa la cantidad de \textit{Lag} para el término de error $e$, esto captura el \textit{Moving Average}.
+\end{itemize}
+
+En la práctica, es posible determinar estos valores 
+
 
 
 
