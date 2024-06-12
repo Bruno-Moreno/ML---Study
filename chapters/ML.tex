@@ -26,7 +26,7 @@ donde $p_j$ es la frecuencia relativa del label $j$ en un grupo. Notar que la en
 Con la entropía ya definida, definamos la \textbf{Information Gain} como 
 $$IG(S,D) = H(S) - \sum_{V \in D}\frac{|V|}{|D|}H(V)$$
 
-Donde el primer término es la entropía antes del split y el segundo término es la suma de las entropías después del split. Podemos iterar hasta que la Information Gain no tenga modificaciones (es decir, llegar a los nodos puros) pero esto podría traer problemas de \textit{overfitting}, en general esto se regula con la profundidad del árbol y escogiendo en cada iteración, la división que maximiza el IG. 
+Donde el primer término es la entropía antes del split y el segundo término es la suma de las entropías después del split. Podemos iterar hasta que la \textit{Information Gain} no tenga modificaciones (es decir, llegar a los nodos puros) pero esto podría traer problemas de \textit{overfitting}, en general esto se regula con la profundidad del árbol y escogiendo en cada iteración, la división que maximiza el IG. 
 
 \begin{figure}[H]
 \begin{subfigure}{.5\textwidth}
@@ -73,6 +73,19 @@ El algoritmo de \textit{Random Forest} es un método \textbf{supervisado de ensa
     \includegraphics[scale=0.25]{notebooks/ML/img/random_forest_diagram.png}
     \caption{Random Forest Diagram}
 \end{figure}
+
+Para estimar la \textbf{feature importance} en modelos basados en árboles, se pueden mirar 3 posibles aspectos: 
+\begin{enumerate}
+    \item Suma de las \textit{information gain} con una variable determinada (o cuánto reduce la entropía, es equivalente). 
+    \item Cantidad de nodos resultantes de la división con esa variable. 
+    \item Profundidad promedio de un árbol en que su primera división es con esa variable. 
+\end{enumerate}
+
+Para extender esto a \textit{Random Forest}, se toma un promedio entre los distintos árboles de decisión que lo conforman. 
+
+\subsection{Gradient Boosting Classifier}
+
+
 
 \subsection{Naive Bayes}
 
@@ -226,7 +239,7 @@ Algunos ejemplos de \textit{kernels} que se pueden utilizar son:
 
 \subsection{ARIMA}
 
-Arima es la abreviación de \textit{Auto-Regressive Integrated Moving Average} y es un método estadístico para realizar \textit{forecasting} sobre series de tiempo que integra los siguientes conceptos:
+ARIMA es la abreviación de \textit{Auto-Regressive Integrated Moving Average} y es un método estadístico para realizar \textit{forecasting} sobre series de tiempo que integra los siguientes conceptos:
 
 \begin{enumerate}
     \item Toma en consideración patrones de crecimiento/decrecimiento en la serie de tiempo (\textit{Auto-Regressive}). 
@@ -246,14 +259,17 @@ Aquí $c$ es una constante y $e$ es un término de error. Los modelos de este ti
     \item $q$ representa la cantidad de \textit{lag} para el término de error $e$, esto captura el \textit{Moving Average}.
 \end{itemize}
 
+\subsubsection{P Value}
 
-En la práctica, es posible determinar el valor de $p$ a través del \textit{Partial Autocorrelation Plot}. Este gráfico muestra la relación de un valor en la serie de tiempo con \textbf{un solo lag}
+En la práctica, es posible determinar el valor de $p$ a través del \textit{Partial Autocorrelation Plot}. Este gráfico muestra la relación de un valor en la serie de tiempo con \textbf{un solo lag} (eliminando relaciones de tiempos intermedios)
 \begin{figure}[H]
     \center
     \includegraphics[scale=0.5]{notebooks/ML/img/partial_autocorrelation.png}
     \caption{Partial Autocorrelation Plot}
 \end{figure}
 El valor óptimo es el último punto después del cual todos los lags están dentro de las bandas azules (intervalos de confianza), en este caso $p=13$. 
+
+\subsubsection{D Value}
 
 El valor de $d$ se puede calcular diferenciando la serie de tiempo hasta encontrar una serie estacionaria. Esto lo podemos medir con un test estadístico de estacionalidad (\textit{Augmented Dickey Fuller Test}).
 
@@ -265,18 +281,20 @@ El valor de $d$ se puede calcular diferenciando la serie de tiempo hasta encontr
 
 Vemos que el $p$-valor en la segunda diferenciación ya es lo suficientemente pequeño para asumir estacionalidad en la serie de tiempo, así $d=2$. 
 
-Finalmente, para determinar el valor $q$ es posible ver el \textit{Autocorrelation Plot} que muestra la relación de un valor en la serie de tiempo con \textbf{todos los lags} anteriores. 
+\subsubsection{Q Value}
+Finalmente, para determinar el valor $q$ es posible ver el \textit{Autocorrelation Plot} que muestra la relación de un valor en la serie de tiempo con \textbf{todos los $p$ lags} anteriores. 
 \begin{figure}[H]
     \center
     \includegraphics[scale=0.5]{notebooks/ML/img/autocorrelation.png}
     \caption{Autocorrelation Plot}
 \end{figure}
-En este caso, el último valor anterior a que todos los \textit{Lag} caigan en la zona azul, es $q=12$.
+En este caso, el último valor anterior a que todos los \textit{lag} caigan en la zona azul, es $q=12$.
 \begin{figure}[H]
     \center
     \includegraphics[scale=0.5]{notebooks/ML/img/arima_results.png}
     \caption{ARIMA over Flight Passengers Forecasting}
 \end{figure}
+
 
 
 
