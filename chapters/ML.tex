@@ -342,17 +342,46 @@ En este caso, el último valor anterior a que todos los \textit{lag} caigan en l
     \caption{ARIMA over Flight Passengers Forecasting}
 \end{figure}
 
-\section{K-Means}
+\subsection{K-Means}
 
 El algoritmo de \textit{K-Means} es un algoritmo \textbf{no supervisado de clustering}. 
+El objetivo es agrupar los datos alrededor de \textbf{centroides} de tal forma en que se minimice la suma de alguna medida de distancia. Vale decir, encontrar el conjunto $ S = \{ S_1 , \dots, S_k \} $ de clusters ($k$ hiperparámetro) tal que
+
+\begin{equation*}
+\begin{aligned}
+S = \argmin_{S} \sum_{i=1}^{k}\sum_{x \in S_i}||x- \mu_i||_{2}^2
+\end{aligned}
+\end{equation*}
+
+Notar que $\mu_i = \frac{1}{|S_i|}\sum_{x \in S_i}x_i$ es el centroide del cluster $S_i$ para todo $i$. El algoritmo que realiza esta búsqueda es el siguiente: 
+\begin{enumerate}
+    \item Seleccionar $k$ centroides aleatorios del conjunto de datos. 
+    \item Asignar cada punto del conjunto de datos al centroide más cercano. 
+    \item Actualizar el nuevo centroide del cluster $S_i$ según $\mu_i = \frac{1}{|S_i|}\sum_{x \in S_i}x_i$. Iterar los pasos 2 y 3 hasta que la asignación no cambie.
+\end{enumerate}
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.3]{notebooks/ML/img/k_means_diagram.png}
+    \caption{K-Means Diagram}
+\end{figure}
+
+\textbf{Este algoritmo siempre converge pero no asegura el óptimo global}. Además, la distancia euclidiana asume que los clusters tienen \textbf{forma esférica}. Por último, es muy \textbf{sensible a outliers}
+
+La selección del hiper-parámetro $k$ se puede hacer utilizando el método del codo (\textit{Elbow Method}). Es decir, calcular el error de la función objetivo para distintos valores de $k$ y seleccionar el menor valor de $k$ tal que la función objetivo no cambie en gran magnitud con los valores siguientes. 
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.3]{notebooks/ML/img/k_means_diagram.png}
+    \caption{K-Means Diagram}
+\end{figure}
 
 
 
 
 
 
-
-\section{Principal Component Analysis (PCA)}
+\subsection{Principal Component Analysis (PCA)}
 
 El análisis de componentes principales (PCA) es un método no supervisado de \textbf{reducción de dimensionalidad}. Consideremos la matriz con los datos $X \in \mathcal{M}_{N \times M}$, es decir, el dataset con $N$ filas y $M$ columnas. Se define la matriz de covarianza $K = (K_{ij})_{ij} \in \mathcal{M}_{M \times M}$ donde  
 $$K_{ij} = \text{Cov}(X_i, X_j) = \mathbb{E}((X_i - \mathbb{E}(X_i))(X_j - \mathbb{E}(X_i)) = \mathbb{E}(X_iX_j) - \mathbb{E}(X_i)\mathbb{E}(X_j)$$
