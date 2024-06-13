@@ -353,17 +353,21 @@ Cuando las features $i,j$ son linealmente independientes, entonces $K_{ij} = 0$.
 $$
 K v_i = \lambda v_i 
 $$
-Los componentes principales serán aquellos vectores propios $(v_i)_i$ cuyo valor propio asociado $(\lambda_i)_i$ es mayor. Para obtener la transformación de los datos a $k$ dimensiones, basta juntar los $k$ vectores propios con mayor valor propio en una matriz $V \in \mathcal{M}_{M \times k}$ y calcular 
+Los componentes principales serán aquellos vectores propios $(v_i)_i$ cuyo valor propio asociado $(\lambda_i)_i$ es mayor, es decir, la \textbf{dirección de máxima varianza}. Para obtener la transformación de los datos a $k$ dimensiones, basta juntar los $k$ vectores propios con mayor valor propio en una matriz $V \in \mathcal{M}_{M \times k}$ y calcular 
 $$ 
 \hat{X} = XV \in \mathcal{M}_{N \times k}
 $$
 \begin{figure}[H]
     \center
-    \includegraphics[scale=0.5]{notebooks/ML/img/pca_diagram.png}
+    \includegraphics[scale=0.9]{notebooks/ML/img/pca_diagram.png}
     \caption{PCA Diagram}
 \end{figure}
 En problemas de clasificación o \textit{clustering}, este enfoque puede ser útil para \textbf{visualizar etiquetas/clusters} en un gráfico de 2 o 3 dimensiones, o bien, puede ser utilizado para dismunir y condensar la información de un dataframe. 
-
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.6]{notebooks/ML/img/pca_over_iris.png}
+    \caption{PCA over Iris Dataset}
+\end{figure}
 
 
 
