@@ -1,6 +1,38 @@
 \section{Machine Learning}
 
-Consideremos un conjunto de datos $X = (x_1, \dots , x_N)$ donde para cada $i \in {1, \dots, N}$, $x_i = [x_{i}^1 , \dots, x_{i}^M]$ es decir, un conjunto de $N$ datos con $M$ features cada uno. Consideremos además $Y = (y_1, \dots , y_N)$ las etiquetas o labels cada cada dato. En problemas de clasificación binario, $y_i \in \{ 0, 1\}$ y en problemas de clasificación multiclase, $y_i \in \{1, \dots L\}$.
+Consideremos un conjunto de datos $X = (x_1, \dots , x_N)$ donde para cada $i \in {1, \dots, N}$, $x_i = [x_{i}^1 , \dots, x_{i}^M]$ es decir, un conjunto de $N$ datos con $M$ features cada uno. Consideremos además $Y = (y_1, \dots , y_N)$ las etiquetas o labels cada cada dato. En problemas de clasificación binario, $y_i \in \{ 0, 1\}$ y en problemas de clasificación multiclase, $y_i \in \{1, \dots L\}$. Para problemas de regresión, $Y = (y_1, \dots , y_N)$ con cada $y_i \in \mathbb{R}$.
+
+\subsection{Linear Regression}
+
+Un modelo de regresión lineal es un modelo de aprendizaje \textbf{supervisado} utilizado para problemas de \textbf{regresión} y \textbf{clasificación}. Se construye a través de la búsqueda de parámetros $\beta_0, \dots, \beta_M$ que multiplican el \textit{input} para obtener la predicción. En problemas de regresión, 
+$$\hat{y} = f(\beta) = \beta_0 + \sum_{j=1}^M \beta_j x^j$$
+y en problemas de clasificación a través de una función sigmoide 
+$$\hat{y} = f(\beta) = \frac{1}{1+e^{- (\beta_0 + \sum_{j=0}^M \beta_j x^j)}}$$.
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.5]{notebooks/ML/img/linear_regression_diagram.png}
+    \caption{Linear Regression Diagram}
+\end{figure}
+
+El problema a optimizar (mínimos errores cuadrados) queda entonces definido por 
+$$\min_{\beta} \quad \frac{1}{N}\sum_{i=1}^N(y_i - f(\beta))^2$$
+Cuya solución es cerrada en el caso de estimar una regresión y estimada a través del descenso de gradiente en el caso de una clasificación. 
+
+\subsubsection{Regularization}
+
+Para prevenir el \textit{overfitting} y que la importancia de los parámetros quede mejor distribuida, es posible agregar a la función un término regularizador controlado por un parámetro $\lambda$ de la siguiente forma 
+$$\min_{\beta} \quad \frac{1}{N}\sum_{i=1}^N(y_i - f(\beta))^2 + \lambda ||\beta||^{p}_{p}$$
+Cuando $p=1$ se le conoce como regresión \textbf{Lasso} y cuando $p=2$ una regresión \textbf{Ridge}. La combinación de ambas restricciones es conocida como \textbf{Elastic Net}. 
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.5]{notebooks/ML/img/lasso_and_ridge_diagram.png}
+    \caption{Lasso and Ridge Diagram}
+\end{figure}
+
+Notar que la restricción para el caso \textit{Lasso} hace más probable que la curva de error intersecte la restricción en una esquina (en mayor dimensión es incluso más probable) por lo que los parámetros que no son importantes para el modelo, serán llevados a 0. En el caso de la restricción \textit{Ridge}, la forma permite que los valores queden acotados pero ninguno será llevado a 0.
+
 
 \subsection{Decision Trees}
 
