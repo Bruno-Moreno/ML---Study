@@ -21,17 +21,32 @@ Cuya solución es cerrada en el caso de estimar una regresión y estimada a trav
 
 \subsubsection{Regularization}
 
-Para prevenir el \textit{overfitting} y que la importancia de los parámetros quede mejor distribuida, es posible agregar a la función un término regularizador controlado por un parámetro $\lambda$ de la siguiente forma 
+Para prevenir el \textit{overfitting} y que la importancia de los parámetros quede mejor distribuida, es posible agregar a la función un término regularizador de la siguiente forma
+
+\begin{equation*}
+\begin{aligned}
+\min_{\beta} \quad \frac{1}{N}\sum_{i=1}^N(y_i - f(\beta))^2 \\
+\textrm{s.t.} \quad ||\beta||^{p}_{p} \leq t
+\end{aligned}
+\end{equation*}
+
+De manera equivalente, por el método de \textit{Lagrange}, sin optimizar el valor de $\lambda$ y eliminando constantes que no dependen de $\beta$
 $$\min_{\beta} \quad \frac{1}{N}\sum_{i=1}^N(y_i - f(\beta))^2 + \lambda ||\beta||^{p}_{p}$$
 Cuando $p=1$ se le conoce como regresión \textbf{Lasso} y cuando $p=2$ una regresión \textbf{Ridge}. La combinación de ambas restricciones es conocida como \textbf{Elastic Net}. 
 
 \begin{figure}[H]
     \center
-    \includegraphics[scale=0.5]{notebooks/ML/img/lasso_and_ridge_diagram.png}
+    \includegraphics[scale=0.4]{notebooks/ML/img/lasso_and_ridge_diagram.png}
     \caption{Lasso and Ridge Diagram}
 \end{figure}
 
-Notar que la restricción para el caso \textit{Lasso} hace más probable que la curva de error intersecte la restricción en una esquina (en mayor dimensión es incluso más probable) por lo que los parámetros que no son importantes para el modelo, serán llevados a 0. En el caso de la restricción \textit{Ridge}, la forma permite que los valores queden acotados pero ninguno será llevado a 0.
+Notar que la restricción para el caso \textit{Lasso} hace más probable que las curvas de nivel intersecten la restricción en una esquina (en mayor dimensión es incluso más probable) por lo que los parámetros que no son importantes para el modelo, serán llevados a 0. En el caso de la restricción \textit{Ridge}, la forma permite que los valores queden acotados pero ninguno será llevado a 0.
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.5]{notebooks/ML/img/regularization_feature_importance.png}
+    \caption{Regularization Feature Importance}
+\end{figure}
 
 
 \subsection{Decision Trees}
