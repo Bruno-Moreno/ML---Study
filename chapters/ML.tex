@@ -101,8 +101,8 @@ Los \textbf{métodos de ensamblaje} son aquellos en los que se combinan múltipl
 
 Existen 3 estrategias principales en los métodos de ensamblaje: 
 \begin{enumerate}
-    \item \textbf{Bagging}: Corresponde a una abreviación de \textit{Bootstrap Aggregating}, esta estrategia entrena cada estimador base con una \textbf{muestra con reemplazo} de ejemplos del conjunto de entrenamiento. 
-    \item \textbf{Boosting}: Esta estrategia se basa en entrenar secuencialmente estimadores base débiles que \textbf{aprenden de los errores del anterior} para crear un estimador robusto.
+    \item \textbf{Bagging}: Corresponde a una abreviación de \textit{Bootstrap Aggregating}, esta estrategia entrena cada estimador base con una \textbf{muestra con reemplazo} de ejemplos del conjunto de entrenamiento. (\textbf{Reduce la varianza})
+    \item \textbf{Boosting}: Esta estrategia se basa en entrenar secuencialmente estimadores base débiles que \textbf{aprenden de los errores del anterior} para crear un estimador robusto. (\textbf{Reduce el bias})
     \item \textbf{Stacking}: Este método combina las predicciones de múltiples estimadores fuertes en una sola. 
 \end{enumerate}
 
@@ -130,9 +130,40 @@ Para estimar la \textbf{feature importance} en modelos basados en árboles, se p
 
 Para extender esto a \textit{Random Forest}, se toma un promedio entre los distintos árboles de decisión que lo conforman. 
 
-\subsection{Gradient Boosting Classifier}
+\subsection{Gradient Boosting Algorithm}
 
+Los modelos de \textit{Gradient Boosting} son algoritmos basados en árboles que pueden ser utilizados para problemas de \textbf{clasificación y regresión}. 
 
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.5]{notebooks/ML/img/gbc_diagram.png}
+    \caption{Gradient Boosting Diagram}
+\end{figure}
+
+El entrenamiento consta en el aprendizaje secuencial de árboles de baja complejidad (\textit{weak learners}) que aprenden de los errores del anterior, vale decir, que aprenden en el conjunto de los \textbf{residuos} del modelo anterior. Sea $L(y , F(x))$ el error de la predicción del modelo $F(x)$ y el valor real $y$. 
+
+El modelo $F(x)$ es el resultado de una combinación lineal de \textit{weak learners} tal que 
+$$ 
+F(x) = \sum_{k=1}^T \gamma_k h_k(x)
+$$
+Donde T es la cantidad de árboles (\textit{n estimators}), $h_k$ los  \textit{weak learners} y $\gamma_k$ su peso. Iniciando en un modelo inicial $F_0(x)$ entrenado sobre los datos, cada iteración se encarga de construir $F_{k}(x)$ según 
+$$ 
+F_{k} = F_{k-1} + \gamma_{k}h_{k}
+$$
+Para encontrar los valores $\gamma_{k} , h_{k}$ se siguen los siguientes pasos: 
+\begin{enumerate}
+    \item Calcular los residuos $i$ en la iteración $k$ como $r_{i,k} = - \left [ \frac{\partial L(y_i, F(x_i))}{\partial F(x_i)} \right ]_{F(x) = F_{k-1}(x)}$. En el caso de $L$ una función de error MSE, $r_{i,k} = 2(y_i - F_{k-1}(x_i)) \propto y_i - F_{k-1}(x_i)$
+    \item Entrenar un \textit{weak learner} sobre $(X, r)$.
+    \item Encontrar el valor de $\gamma_k$ como aquel que resuelve 
+    $$ 
+    \gamma_k = \argmin_{\gamma}\sum_{i=1}^N L(y_i , F_{k-1} + \gamma h_{k}(x_i))
+    $$
+    \item Hacer update al modelo según $F_{k} = F_{k-1} + \gamma_{k}h_{k}$
+\end{enumerate}
+
+La importancia de las variables es medida de manera similar a un \textit{Random Forest}, a través de la suma ponderada de las \textit{Information Gain} (o bien de la disminución de la entropía) que cada una de las features provoca en los distintos árboles. 
+
+Existen otras formas de calcular la importancia de las variables, lo cual se discute en la sección \ref{subsec:shap_values}.
 
 \subsection{Naive Bayes}
 
@@ -377,9 +408,6 @@ La selección del hiper-parámetro $k$ se puede hacer utilizando el método del 
 \end{figure}
 
 En este ejemplo, el valor óptimo de clusters con el \textit{Elbow Method} es $k=3$.  
-
-
-
 
 
 \subsection{Principal Component Analysis (PCA)}
