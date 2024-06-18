@@ -4,7 +4,7 @@ AI study guide with a series of Jupyter Notebooks with detailed implementation o
 
 ## Study Book 
 
-PENDING
+[AI Algorithms](ai_algorithms.pdf)
 
 ## Notebooks 
 
@@ -13,15 +13,15 @@ PENDING
 [**Python>=3.9**](https://www.python.org/) is required with all
 [requirements.txt](notebooks/requirements.txt).
 
-The other notebooks require a specific Python version and libraries. 
+Notebooks may require a specific Python version and libraries. 
 
 ```bash
 $ git clone https://github.com/Bruno-Moreno/ai-algorithms.git
-$ cd ai-algorithms
+$ cd ai-algorithms/notebooks
 $ pip install -r requirements.txt
 ```
 
-### Structure: 
+### Code Structure: 
  - [Machine Learning](notebooks/ML) 
  - [Computer Vision](notebooks/CV)
  - [Generative AI](notebooks/GEN)
