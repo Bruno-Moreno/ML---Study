@@ -28,15 +28,15 @@ Consideremos el siguiente ejemplo en el que buscamos determinar si el efecto de 
 
 \begin{figure}[H]
     \center
-    \includegraphics[scale=0.4]{notebooks/STATS/img/causal_inference_age_distribution.png}
-    \caption{Casual Inference - Age Distribution}
+    \includegraphics[scale=0.5]{notebooks/STATS/img/causal_inference_age_distribution.png}
+    \caption{Casual Inference - Distribution Example}
 \end{figure}
 
-Vemos que existe un \textit{selection bias} pues el grupo de tratamiento y control pues tienen distribuciones de edad distintas. Existen múltiples enfoques para resolver este problema. 
+Vemos que existe un \textit{selection bias} pues el grupo de tratamiento y control tienen distribuciones de edad distintas. Existen múltiples enfoques para resolver este problema. 
 
 \subsubsection{Matching Imputation}
 
-Es posible utilizar un algoritmo de \textit{Matching} como \textit{NearestNeighbors} para imputar el posible \textit{outcome} que hubiese tenido un individuo al recibir o no el tratamiento. En nuestro ejemplo, para cada edad de los individuos del grupo de control, buscaríamos al sujeto con la edad más cercana en el grupo de tratamiento y imputaríamos su respuesta al tratamiento y viceversa. 
+Es posible utilizar un algoritmo de \textit{Matching} como \textit{NearestNeighbors} para imputar el posible \textit{outcome} que hubiese tenido un individuo al recibir o no el tratamiento. En nuestro ejemplo, para cada edad de los individuos del grupo de control, buscaríamos al sujeto con la edad más cercana en el grupo de tratamiento e imputaríamos su respuesta al tratamiento y viceversa. 
 
 La efectividad del tratamiento se puede medir a través del promedio de los \textit{outcome} cuando reciben y cuando no reciben el tratamiento. 
 
@@ -51,7 +51,13 @@ Así, si el valor de ITE es alto, implica que en el individuo $i$ el tratamiento
 
 Hay que tener en consideración que este modelo requiere una \textbf{calibración} para asegurar que el \textit{output} de los modelos sean probabilidades.
 
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.5]{notebooks/STATS/img/causal_inference_ite_two_models.png}
+    \caption{Casual Inference - ITE Two Models}
+\end{figure}
 
+Vemos así que el impacto del tratamiento aislando el efecto de la edad, ocurre según ITE entre los 35 y 45 años. 
 
 
 
