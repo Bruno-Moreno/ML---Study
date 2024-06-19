@@ -40,21 +40,34 @@ Es posible utilizar un algoritmo de \textit{Matching} como \textit{NearestNeighb
 
 La efectividad del tratamiento se puede medir a través del promedio de los \textit{outcome} cuando reciben y cuando no reciben el tratamiento. 
 
-\subsubsection{Two ML Models}
+\subsubsection{Meta Learners}
 
-Este enfoque plantea entrenar 2 clasificadores, uno para el grupo de control y otro para el grupo de tratamiento. Sea $y_i$ el \textit{target}, $w$ si recibió el tratamiento y $X_i$ el conjunto de variables del modelo. Con esto, los output quedan definidos según $p(y_i = 1 | w = 1, X_i)$ y $p(y_i = 1 | w = 0, X_i)$. 
-Definimos el valor ITE (\textit{Individual Treatment Effect}) según 
+Este enfoque plantea utilizar algoritmos de \textit{Machine Learning} para determinar el efecto del tratamiento en el \textit{outcome} del experimento. Sea $y_i$ el \textit{target}, $w$ si recibió el tratamiento y $X_i$ el conjunto de variables del modelo, definimos ITE (\textit{Individual Treatment Effect}) según 
 $$
 \text{ITE} = \left [ p(y_i = 1 | w_i = 1, X_i) - p(y_i = 1 | w_i = 0, X_i) \right ]
 $$
-Así, si el valor de ITE es alto, implica que en el individuo $i$ el tratamiento $w$ \textbf{si tiene un efecto}. 
 
-Hay que tener en consideración que este modelo requiere una \textbf{calibración} para asegurar que el \textit{output} de los modelos sean probabilidades.
+\begin{itemize}
+    \item \textbf{S - Model} Este algoritmo es el más simple de todos pues agrega la variable \textit{treatment} como input de un único modelo. El valor de ITE es calculado para cada individuo variando el valor del tratamiento. 
+    \item \textbf{T - Model} Este algoritmo entrena 2 clasificadores, uno encargado del grupo de control y otro para el grupo de tratamiento. El valor de ITE es calculado como la resta del \textit{output} de ambos modelos. 
+
+    Hay que tener en consideración que este modelo requiere una \textbf{calibración} para asegurar que el \textit{output} de los modelos sean probabilidades.
+    \item \textbf{X - Model}: SOON 
+\end{itemize}
+
 
 \begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
     \center
-    \includegraphics[scale=0.5]{notebooks/STATS/img/causal_inference_ite_two_models.png}
-    \caption{Casual Inference - ITE Two Models}
+    \includegraphics[scale=0.35]{notebooks/STATS/img/causal_inference_s_model.png}
+    \caption{S - Model}
+\end{subfigure}%
+\begin{subfigure}{.4\textwidth}
+    \center
+    \includegraphics[scale=0.35]{notebooks/STATS/img/causal_inference_t_model.png}
+    \caption{T - Model}
+\end{subfigure}
+\caption{Meta Learners}
 \end{figure}
 
 Vemos así que el impacto del tratamiento aislando el efecto de la edad, ocurre según ITE entre los 35 y 45 años. 
