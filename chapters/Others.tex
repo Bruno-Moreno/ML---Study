@@ -20,8 +20,6 @@ Así, un modelo que crece en complejidad reducirá su bias pero aumentará su va
 
 \subsection{Random Noise Feature Importance}
 
-
-
 \subsection{SHAP Values}
 \label{subsec:shap_values}
 
@@ -32,6 +30,33 @@ El SHAP values (\textit{SHapley Additive exPlanations}) es un algoritmo modelo-a
     \includegraphics[scale=0.55]{notebooks/Others/img/shap_values_example.png}
     \caption{SHAP Values Example}
 \end{figure}
+
+\subsection{Cross-Validation Techniques}
+
+El \textit{Cross-Validation} es un método que permite evaluar el rendimiento de un modelo de \textit{Machine Learning} y que busca eliminar el sesgo de la elección del conjunto de entrenamiento y testeo. Es ampliamente utilizado para la búsqueda de los mejores hiper-parámetros de un modelo. 
+
+
+\begin{enumerate}
+    \item \textbf{KFold}: Esta técnica consiste en dividir el conjunto de entrenamiento en $k$ partes. En cada iteración, se selecciona una de las particiones para testing y el resto para training. El score será el promedio de los scores obtenidos. Existe una variación llamada \textbf{StratifiedKFold} en la cual se asegura además que el \textit{target} tenga la misma distribución en cada partición test. 
+    \item \textbf{ShuffleSplit}: Esta técnica selecciona la partición de entrenamiento y testing de manera aleatoria. No asegura que las particiones no sean las mismas en cada iteración. 
+    \item \textbf{LeavePOut}: Esta técnica deja $p$ datos para el conjunto de testeo y entrena con todo el resto. Este proceso se realiza con todas las combinaciones posibles lo que asegura una estimación con menor \textit{bias} aunque es extremadamente ineficiente. 
+\end{enumerate}
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.55]{notebooks/Others/img/}
+    \caption{SHAP Values Example}
+\end{figure}
+
+\subsubsection{Time Series Cross Validation}
+
+En el caso de series de tiempo, es importante notar que al momento de realizar \textit{Cross-Validation}, para problemas de \textit{Forecast} es importante \textbf{no entrenar con datos posteriores al testing} pues en la práctica, no se tendría acceso a estos.
+
+
+
+\subsection{Outlier Detection}
+
+
 
 
 
