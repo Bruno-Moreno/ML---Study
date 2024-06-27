@@ -31,6 +31,25 @@ El SHAP values (\textit{SHapley Additive exPlanations}) es un algoritmo modelo-a
     \caption{SHAP Values Example}
 \end{figure}
 
+\subsection{Outlier Detection}
+
+La detección de \textit{Outliers} es la práctica de encontrar \textbf{datos anómalos} o fuera de distribución en un \textit{dataset}. Es de suma importancia para la construcción de modelos de fraude o para mejorar el performance de modelos sensibles a \textit{outliers}.
+
+\subsubsection{Interquantile Range}
+
+\subsubsection{Z - Score}
+
+\subsubsection{DBSCAN}
+
+\subsubsection{Isolation Forest}
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.55]{notebooks/Others/img/outlier_detection.png}
+    \caption{Outiler Detection Contour Plot}
+\end{figure}
+
+
 \subsection{Cross-Validation Techniques}
 
 El \textit{Cross-Validation} es un método que permite evaluar el rendimiento de un modelo de \textit{Machine Learning} y que busca eliminar el sesgo de la elección del conjunto de entrenamiento y testeo. Es ampliamente utilizado para la búsqueda de los mejores hiper-parámetros de un modelo. 
@@ -42,19 +61,16 @@ El \textit{Cross-Validation} es un método que permite evaluar el rendimiento de
     \item \textbf{LeavePOut}: Esta técnica deja $p$ datos para el conjunto de testeo y entrena con todo el resto. Este proceso se realiza con todas las combinaciones posibles lo que asegura una estimación con menor \textit{bias} aunque es extremadamente ineficiente. 
 \end{enumerate}
 
-\begin{figure}[H]
-    \center
-    \includegraphics[scale=0.55]{notebooks/Others/img/}
-    \caption{SHAP Values Example}
-\end{figure}
-
 \subsubsection{Time Series Cross Validation}
 
 En el caso de series de tiempo, es importante notar que al momento de realizar \textit{Cross-Validation}, para problemas de \textit{Forecast} es importante \textbf{no entrenar con datos posteriores al testing} pues en la práctica, no se tendría acceso a estos.
 
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.45]{notebooks/Others/img/time_series_cross_validation.png}
+    \caption{Time Series Cross-Validation Example}
+\end{figure}
 
-
-\subsection{Outlier Detection}
 
 
 
