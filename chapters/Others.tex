@@ -2,6 +2,47 @@
 
 \subsection{Performance Metrics} 
 
+Para medir el performance de un modelo de \textit{Machine Learning} ya sea en problemas de clasificación o regresión, es posible utilizar distintas métricas de acuerdo a lo que nos importa medir en cada situación. 
+
+\subsubsection{Classification Metrics}
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.25]{notebooks/Others/img/confusion_matrix_diagram.png}
+    \caption{Confusion Matrix Diagram}
+\end{figure}
+
+En las métricas para problemas de clasificación, podemos encontrar
+\begin{enumerate}
+    \item \textbf{Accuracy:} Se define como el total de aciertos positivos y negativos sobre el total de predicciones. 
+    $$ 
+    \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
+    $$
+    \item \textbf{Precision:} Este es el porcentaje de identificaciones positivas correctas en el total de identificaciones positivas. 
+    $$
+    \text{Precision} = \frac{TP}{TP + FP}
+    $$
+    \item \textbf{Recall: } Este es el porcentaje de identificaciones positivas correctas en el total de datos positivos. 
+    $$ 
+    \text{Recall} = \frac{TP}{TP + FN}
+    $$
+    \item \textbf{F1 - Score: } Esta métrica es la media armónica entre la precisión y el recall. 
+    $$ 
+    F_{1} = \frac{2}{\frac{1}{\text{precision}} + \frac{1}{\text{recall}}} = 2 \frac{\text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}}
+    $$
+    Si alguna de las métricas tiene una mayor importancia dado el contexto del problema, podemos amplificarla por un valor $\beta$ de la siguiente forma
+    $$ 
+    F_{\beta} = (1 + \beta^2) \frac{\text{precision} \cdot \text{recall}}{\beta^2 \cdot \text{precision} + \text{recall}}
+    $$
+    Es decir, el recall es $\beta$ veces más importante que la precisión. 
+\end{enumerate}
+
+En problemas de clasificación binario, definir si un score se asigna al label positivo (1) o negativo (0) depende de un umbral (threshold) que se puede definir en base a qué métrica queremos optimizar. Lo anterior da origen a la curva \textit{Precision - Recall}
+
+
+
+
+
 \subsection{Bias vs Variance}
 
 El dilema de \textit{Bias vs Variance} describe la relación entre la complejidad del modelo, la precisión de las predicciones y cómo éste se comporta al predecir datos nunca antes vistos. El error estimado de una predicción viene dado en términos generales por 
