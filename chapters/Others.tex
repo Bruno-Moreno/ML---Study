@@ -8,7 +8,7 @@ El dilema de \textit{Bias vs Variance} describe la relación entre la complejida
 $$
 \text{Expected Error} = (\text{Bias})^2 + \text{Variance} + \text{Irreductible Error}
 $$
-Así, un modelo que crece en complejidad reducirá su bias pero aumentará su varianza (extremo: \textit{overfitting}) y a la vez, reducir la complejidad permitirá generalizar mejor reduciendo la varianza pero aumentando el bias (extremo: \textit{underfitting}). 
+Así, un modelo que crece en complejidad reducirá su bias pero aumentará su varianza (extremo: overfitting) y a la vez, reducir la complejidad permitirá generalizar mejor reduciendo la varianza pero aumentando el bias (extremo: underfitting). 
 
 \begin{figure}[H]
     \center
@@ -33,7 +33,7 @@ El SHAP values (\textit{SHapley Additive exPlanations}) es un algoritmo modelo-a
 
 \subsection{Outlier Detection}
 
-La detección de \textit{outliers} es la práctica de encontrar \textbf{datos anómalos} o fuera de distribución en un \textit{dataset}. Es de suma importancia para la construcción de modelos de fraude o para mejorar el performance de modelos sensibles a \textit{outliers}.
+La detección de outliers es la práctica de encontrar \textbf{datos anómalos} o fuera de distribución en un dataset. Es de suma importancia para la construcción de modelos de fraude o para mejorar el performance de modelos sensibles a outliers.
 
 \begin{figure}[H]
     \center
@@ -47,7 +47,7 @@ Definimos el \textit{Interquantile Range} IC como la diferencia entre el percent
 $$ 
 IC = Q_3 - Q_1
 $$
-En este caso, los \textit{outliers} serán aquellos datos $x_i$ tal que 
+En este caso, los outliers serán aquellos datos $x_i$ tal que 
 $x_i \geq Q3 + I_{\text{range}}IC$ o bien $x_i \leq Q1 - I_{\text{range}}IC$
 donde $ I_{\text{range}}$ permite controlar el porcentaje de outliers que se espera encontrar. (Equivalencia en distribución normal $I_{\text{range}} = 1.5 \approx Z_{\text{value}} = 2.69$).
 
@@ -66,7 +66,7 @@ Donde $\Sigma$ es la matriz de covarianza y $\mu_i$ el vector de media.
 
 \subsubsection{DBSCAN}
 
-Los datos que no cumplan el mínimo de vecinos a distancia menor de $\epsilon$ son considerados por DBSCAN como \textit{outliers}.
+Los datos que no cumplan el mínimo de vecinos a distancia menor de $\epsilon$ son considerados por DBSCAN como outliers.
 
 \subsubsection{Isolation Forest}
 
@@ -80,7 +80,7 @@ Este algoritmo iterativo, puede ser representado en el siguiente diagrama:
     \caption{Isolation Forest Diagram}
 \end{figure}
 
-Los puntos que en promedio, requieren \textbf{menos divisiones para ser aislados}, son los que el algoritmo considera como potenciales datos anómalos (\textit{outliers}).
+Los puntos que en promedio, requieren \textbf{menos divisiones para ser aislados}, son los que el algoritmo considera como potenciales datos anómalos (outliers).
 
 \subsection{Cross-Validation Techniques}
 
@@ -88,14 +88,14 @@ El \textit{Cross-Validation} es un método que permite evaluar el rendimiento de
 
 
 \begin{enumerate}
-    \item \textbf{KFold}: Esta técnica consiste en dividir el conjunto de entrenamiento en $k$ partes. En cada iteración, se selecciona una de las particiones para testing y el resto para training. El score será el promedio de los scores obtenidos. Existe una variación llamada \textbf{StratifiedKFold} en la cual se asegura además que el \textit{target} tenga la misma distribución en cada partición.
+    \item \textbf{KFold}: Esta técnica consiste en dividir el conjunto de entrenamiento en $k$ partes. En cada iteración, se selecciona una de las particiones para testing y el resto para training. El score será el promedio de los scores obtenidos. Existe una variación llamada \textbf{StratifiedKFold} en la cual se asegura además que el target tenga la misma distribución en cada partición.
     \item \textbf{ShuffleSplit}: Esta técnica selecciona la partición de entrenamiento y testing de manera aleatoria. No asegura que las particiones sean las mismas en cada iteración. 
-    \item \textbf{LeavePOut}: Esta técnica deja $p$ datos para el conjunto de testeo y entrena con todo el resto. Este proceso se realiza con todas las combinaciones posibles lo que asegura una estimación con menor \textit{bias} aunque es extremadamente ineficiente. 
+    \item \textbf{LeavePOut}: Esta técnica deja $p$ datos para el conjunto de testeo y entrena con todo el resto. Este proceso se realiza con todas las combinaciones posibles lo que asegura una estimación con menor bias aunque es extremadamente ineficiente. 
 \end{enumerate}
 
 \subsubsection{Time Series Cross Validation}
 
-En el caso de series de tiempo, es importante notar que al momento de realizar \textit{Cross-Validation} para problemas de \textit{Forecast}, es importante \textbf{no entrenar con datos posteriores al testing} pues en la práctica, no se tendría acceso a estos.
+En el caso de series de tiempo, es importante notar que al momento de realizar \textit{Cross-Validation} para problemas de Forecast, es importante \textbf{no entrenar con datos posteriores al testing} pues en la práctica, no se tendría acceso a estos.
 
 \begin{figure}[H]
     \center

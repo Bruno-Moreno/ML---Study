@@ -4,7 +4,7 @@ Consideremos un conjunto de datos $X = (x_1, \dots , x_N)$ donde para cada $i \i
 
 \subsection{Linear Regression}
 
-Un modelo de regresión lineal es un modelo de aprendizaje \textbf{supervisado} utilizado para problemas de \textbf{regresión} y \textbf{clasificación}. Se construye a través de la búsqueda de parámetros $\beta_0, \dots, \beta_M$ que multiplican el \textit{input} para obtener la predicción. En problemas de regresión, 
+Un modelo de regresión lineal es un modelo de aprendizaje \textbf{supervisado} utilizado para problemas de \textbf{regresión} y \textbf{clasificación}. Se construye a través de la búsqueda de parámetros $\beta_0, \dots, \beta_M$ que multiplican el input para obtener la predicción. En problemas de regresión, 
 $$\hat{y} = f(\beta) = \beta_0 + \sum_{j=1}^M \beta_j x^j$$
 y en problemas de clasificación a través de una función sigmoide 
 $$\hat{y} = f(\beta) = \frac{1}{1+e^{- (\beta_0 + \sum_{j=0}^M \beta_j x^j)}}$$.
@@ -21,7 +21,7 @@ Cuya solución es cerrada en el caso de estimar una regresión y estimada a trav
 
 \subsubsection{Regularization}
 
-Para prevenir el \textit{overfitting} y que la importancia de los parámetros quede mejor distribuida, es posible agregar a la función un término regularizador de la siguiente forma
+Para prevenir el overfitting y que la importancia de los parámetros quede mejor distribuida, es posible agregar a la función un término regularizador de la siguiente forma
 
 \begin{equation*}
 \begin{aligned}
@@ -73,7 +73,7 @@ donde $p_j$ es la frecuencia relativa del label $j$ en un grupo. Notar que la en
 Con la entropía ya definida, definamos la \textbf{Information Gain} como 
 $$IG(S,D) = H(S) - \sum_{V \in D}\frac{|V|}{|D|}H(V)$$
 
-Donde el primer término es la entropía antes del split y el segundo término es la suma de las entropías después del split. Podemos iterar hasta que la \textit{Information Gain} no tenga modificaciones (es decir, llegar a los nodos puros) pero esto podría traer problemas de \textit{overfitting}, en general esto se regula con la profundidad del árbol y escogiendo en cada iteración, la división que maximiza el IG. 
+Donde el primer término es la entropía antes del split y el segundo término es la suma de las entropías después del split. Podemos iterar hasta que la \textit{Information Gain} no tenga modificaciones (es decir, llegar a los nodos puros) pero esto podría traer problemas de overfitting, en general esto se regula con la profundidad del árbol y escogiendo en cada iteración, la división que maximiza el IG. 
 
 \begin{figure}[H]
 \begin{subfigure}{.5\textwidth}
@@ -113,7 +113,7 @@ Existen 3 estrategias principales en los métodos de ensamblaje:
 \end{figure}
 
 
-El algoritmo de \textit{Random Forest} es un método \textbf{supervisado de ensamblaje} basado en \textit{Decision Trees}. Este, utiliza la estrategia de \textbf{bagging} para entrenar cada árbol de decisión sobre muestras con reemplazo del conjunto de entrenamiento y además, cada árbol es entrenado sobre un \textbf{subconjunto aleatorio de features} para asegurar que no haya similitud entre ellos. Ambas estrategias permiten mejorar la precisión del modelo y controlar el  \textit{overfitting}.
+El algoritmo de \textit{Random Forest} es un método \textbf{supervisado de ensamblaje} basado en \textit{Decision Trees}. Este, utiliza la estrategia de \textbf{bagging} para entrenar cada árbol de decisión sobre muestras con reemplazo del conjunto de entrenamiento y además, cada árbol es entrenado sobre un \textbf{subconjunto aleatorio de features} para asegurar que no haya similitud entre ellos. Ambas estrategias permiten mejorar la precisión del modelo y controlar el overfitting.
 
 \begin{figure}[H]
     \center
@@ -224,7 +224,7 @@ Las \textit{Support Vector Machines} o SVM, son modelos de aprendizaje \textbf{s
 
 Consideremos el caso binario donde $Y \in \{0,1\}^n$ El hiper-plano separador está definido por 
 $$ H = \{ x \in \mathbb{R}^n | w^{\top}x + b = 0 \} $$ 
-Donde $w$ es el vector perpendicular al hiper-plano y $b$ un \textit{offset}. 
+Donde $w$ es el vector perpendicular al hiper-plano y $b$ un offset. 
 De esta forma si $w^{\top}x + b > 0$ quiere decir que $x$ pertenece a la clase 1 y $w^{\top}x + b < 0$ que $x$ pertenece a la clase 0, escrito de otra forma 
 $$y_i(w^{\top}x+b) \geq 1 \quad \forall i \in \{ 1 , \dots , N \}$$
 En el caso de un problema de clasificación linealmente separable, existen infinitos hiper-planos que satisfacen las condiciones anteriores (basta con rotar ligeramente el hiper-plano) por lo que vamos a exigir además las siguientes condiciones sobre vectores de soporte $x_{-}$ y $x_{+}$. 
@@ -240,7 +240,7 @@ Notar entonces que con esta condición, es posible calcular el ancho $m$ de la s
 $$m = \frac{|\langle w, x \rangle|}{||w||}$$
 Considerando la definición de los vectores de soporte, se tiene que 
 $$2m = \frac{|\langle w, x_{+} \rangle|}{||w||} + \frac{|\langle w, x_{-} \rangle|}{||w||} = \frac{|1-b|}{||w||} + \frac{|-1-b|}{||w||}$$
-Además el \textit{offset} $b \in [0,1]$ por la definición anterior, así 
+Además el offset $b \in [0,1]$ por la definición anterior, así 
 $$m = \frac{1}{||w||}$$
 Finalmente, el problema de optimización quedaría de la siguiente forma 
 \begin{equation*}
@@ -287,7 +287,7 @@ donde $K: X \times X \rightarrow \mathbb{R} $ es un kernel de \textit{Mercer} en
 
 \subsubsection{Kernels}
 
-Para que un \textit{kernel} pueda utilizarse en el contexto de las SVM, es importante que cumpla con las condiciones de \textit{Mercer}: 
+Para que un kernel pueda utilizarse en el contexto de las SVM, es importante que cumpla con las condiciones de \textit{Mercer}: 
 \begin{itemize}
     \item Symmetry: $K(x,y) = K(y,x) \quad \forall x,y$ 
     \item Positive Semi-Definiteness: Para cualquier vector $c \in \mathbb{R}^n$, y $x_1 , \dots x_n$ una cantidad finita de puntos, se debe satisfacer que  
@@ -302,10 +302,10 @@ Algunos ejemplos de \textit{kernels} que se pueden utilizar son:
     El más útil cuando la data es linealmente separable. 
     \item \textbf{Polynomial Kernel}: $K(x,y) = (x^{\top}y + c)^d$. 
     
-    El parámetro $d$ controla el nivel de complejidad del kernel pero valores muy altos podrían llevar a \textit{overfitting}.
+    El parámetro $d$ controla el nivel de complejidad del kernel pero valores muy altos podrían llevar a overfitting.
     \item \textbf{Gaussian Radial Basis Function (RBF) Kernel}: $K(x,y) = e^{-\gamma||x-y||^2}$. 
     
-    Este kernel es el más popular pues \textbf{mapea los datos a un espacio de dimensión infinita}. El parámetro $\gamma$ controla la complejidad de los \textit{decision boundaries} al agregar mayor o menor \textit{spread} al kernel. 
+    Este kernel es el más popular pues \textbf{mapea los datos a un espacio de dimensión infinita}. El parámetro $\gamma$ controla la complejidad de los \textit{decision boundaries} al agregar mayor o menor spread al kernel. 
     \item \textbf{Sigmoid Kernel}: $K(x,y) = \text{tanh}(ax^{\top}y + b)$
 \end{enumerate}
 
@@ -317,7 +317,7 @@ Algunos ejemplos de \textit{kernels} que se pueden utilizar son:
 
 \subsection{ARIMA}
 
-ARIMA es la abreviación de \textit{Auto-Regressive Integrated Moving Average} y es un método estadístico para realizar \textit{forecasting} sobre series de tiempo que integra los siguientes conceptos:
+ARIMA es la abreviación de \textit{Auto-Regressive Integrated Moving Average} y es un método estadístico para realizar forecasting sobre series de tiempo que integra los siguientes conceptos:
 
 \begin{enumerate}
     \item Toma en consideración patrones de crecimiento/decrecimiento en la serie de tiempo (\textit{Auto-Regressive}). 
@@ -332,9 +332,9 @@ $$
 Aquí $c$ es una constante y $e$ es un término de error. Los modelos de este tipo son escritos como ARIMA($p,d,q$) donde: 
 
 \begin{itemize}
-    \item $p$ es la cantidad de tiempos en que la variable es mirada al pasado (\textit{Lag}).
+    \item $p$ es la cantidad de tiempos en que la variable es mirada al pasado (Lag).
     \item $d$ es la cantidad de veces que la variable es diferenciada para producir una señal estacionaria. $d=0$ refiere a que la señal ya es estacionaria, $d=1$ es que la señal crece/decrece linealmente y $d=2$ es que la señal crece exponencialmente. 
-    \item $q$ representa la cantidad de \textit{lag} para el término de error $e$, esto captura el \textit{Moving Average}.
+    \item $q$ representa la cantidad de lag para el término de error $e$, esto captura el \textit{Moving Average}.
 \end{itemize}
 
 \subsubsection{P Value}
@@ -366,7 +366,7 @@ Finalmente, para determinar el valor $q$ es posible ver el \textit{Autocorrelati
     \includegraphics[scale=0.5]{notebooks/ML/img/autocorrelation.png}
     \caption{Autocorrelation Plot}
 \end{figure}
-En este caso, el último valor anterior a que todos los \textit{lag} caigan en la zona azul, es $q=12$.
+En este caso, el último valor anterior a que todos los lag caigan en la zona azul, es $q=12$.
 \begin{figure}[H]
     \center
     \includegraphics[scale=0.5]{notebooks/ML/img/arima_results.png}
@@ -454,7 +454,7 @@ $$
     \includegraphics[scale=0.9]{notebooks/ML/img/pca_diagram.png}
     \caption{PCA Diagram}
 \end{figure}
-En problemas de clasificación o \textit{clustering}, este enfoque puede ser útil para \textbf{visualizar etiquetas/clusters} en un gráfico de 2 o 3 dimensiones, o bien, puede ser utilizado para dismunir y condensar la información de un dataframe. 
+En problemas de clasificación o clustering, este enfoque puede ser útil para \textbf{visualizar etiquetas/clusters} en un gráfico de 2 o 3 dimensiones, o bien, puede ser utilizado para disminuir y condensar la información de un dataframe. 
 \begin{figure}[H]
     \center
     \includegraphics[scale=0.6]{notebooks/ML/img/pca_over_iris.png}
