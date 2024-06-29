@@ -409,6 +409,32 @@ La selección del hiper-parámetro $k$ se puede hacer utilizando el método del 
 
 En este ejemplo, el valor óptimo de clusters con el \textit{Elbow Method} es $k=3$.  
 
+\subsection{DBSCAN}
+
+El algoritmo DBSCAN (\textit{Density-based spatial clustering of applications with noise}) es un algoritmo basado en densidad que permite resolver problemas de \textbf{clustering} y realizar \textbf{outlier detection}. 
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.5]{notebooks/ML/img/dbscan_on_moons.png}
+    \caption{DBSCAN Example}
+\end{figure}
+
+Para realizar esto, se siguen los siguientes pasos: 
+
+\begin{enumerate}
+    \item Encontrar todos aquellos puntos (\textit{core points}) que tengan más de \textit{MinNeighbor} vecinos a distancia menor de $\epsilon$. 
+    \item Todos los \textit{core points} conexos serán asignados a un cluster. 
+    \item Todos los \textit{non core points} serán asignados al cluster del \textit{core point} más cercano. El resto será considerado como \textit{outliers}. 
+\end{enumerate}
+
+Sea $C = \{ C_1 , \dots , C_{k} \}$ el número de clusters generados, el algoritmo anterior asegura la optimalidad del siguiente problema de optimización: 
+
+\begin{equation*}
+\begin{aligned}
+\min_{C} \quad &|C| \\
+\textrm{s.t.} \quad d(p,q) \leq \epsilon \hspace{0.5em} \forall &p,q \in C_i, \hspace{0.5em} \forall C_i \in C
+\end{aligned}
+\end{equation*}
 
 \subsection{Principal Component Analysis (PCA)}
 
