@@ -80,11 +80,61 @@ Es decir, el estadístico queda definido por $Z = \frac{\hat{p} - p_0}{\frac{\sq
 
 Un AB Testing es un procedimiento que involucra dividir la población en un grupo de control y un grupo de tratamiento para testear 2 versiones de una única variable. El objetivo es determinar si la estrategia $A$ es más efectiva que una estrategia $B$ para alguna medida de interés.
 
-\subsubsection{Chi - Squared Test}
+\subsubsection{Categorical}
 
-Consideremos el testing de una variable categórica (ej: click / no click de un post) 
+Consideremos el testing de una variable categórica (ej: click / no click de un post) con las estrategias $A$ y $B$. Definimos el siguiente test de hipótesis 
+\begin{equation*}
+\begin{aligned}
+    H_0: A \text{ tiene el mismo efecto que } B \\ 
+    H_A: A \text{ tiene distinto efecto que } B
+\end{aligned}
+\end{equation*}
 
-\subsubsection{T - Test}
+Sea $X_1 , \dots X_n \sim \text{Bernoulli}(p_A)$ observaciones con la estrategia $A$ e $Y_1, \dots, Y_m \sim \text{Bernoulli}(p_B)$ observaciones con la estrategia $B$. Podemos reescribir el test de hipótesis como 
+
+\begin{equation*}
+\begin{aligned}
+    H_0: p_A = p_B \\ 
+    H_A: p_A \neq p_B
+\end{aligned}
+\end{equation*}
+
+Si el tamaño de muestras $n$ y $m$ es grande, podemos utilizar TCL tal que 
+$$
+\hat{p}_A - \hat{p}_B \sim \mathcal{N} \left ( p_A - p_B , \frac{p_A(1-p_A)}{n} + \frac{p_B(1-p_B)}{m} \right )
+$$
+Bajo $H_0$, se tiene que 
+$$
+Z = \frac{\hat{p}_A - \hat{p}_B}{\sqrt{p(1-p)\left ( \frac{1}{n} + \frac{1}{m} \right )}}
+$$
+Donde $p = \frac{\sum_{i=1}^n X_i + \sum_{i=1}^m Y_i}{n + m}$.
+
+Otra estrategia para resolver este problema que también funciona para casos en los que hay más de una variable categórica es la siguiente, notemos que 
+$$
+\frac{\sum_{i=1}^{n}X_i - np}{\sqrt{np(1-p)}} \sim \mathcal{N}(0, 1)
+$$
+Elevado a 2 se tiene que 
+
+$$ \frac{(\sum_{i=1}^{n}X_i - np)^2}{np(1-p)} \sim \chi^2_{1}$$
+
+Podemos reescribir esta ecuación según 
+
+$$ \frac{((n-\sum_{i=1}^n X_i) - n(1-p))^2}{n(1-p)} + \frac{(\sum_{i=1}^n X_i - np)^2}{np} \sim \chi^2_{1}$$
+
+Definamos el número real de observaciones según $\sum_{i=1}^n X_i = o_1$ y $o_0 = n - o_1$. Definamos también el número esperado de observaciones según $m_1 = np$ and $m_0 = n(1-p)$. Reemplazando con estas definiciones
+
+$$ \frac{(o_0 - m_0)^2}{m_0} + \frac{(o_1 - m_1)^2}{m_1} \sim \chi^2_{1} $$ 
+
+Para el caso general con $k$ clases, se tiene que 
+$$ \sum_{j=1}^{k}\frac{(o_j - m_j)^2}{m_j} \sim \chi^2_{k-1}$$ 
+
+Lo anterior se conoce como el \textbf{Test Chi-Cuadrado}, el grado de libertad dependerá de la cantidad de variables independientes y los posibles outcomes. Si los datos se encuentran en una tabla de contingencia, los grados de libertad $df$ se puede calcular según $df = (n_{\text{rows}} - 1)\cdot (n_{\text{cols}} - 1)$
+
+
+
+
+
+\subsubsection{Continuous}
 
 Consideremos el testing de una variable numérica continua (ej: monto de la compra)  
 
