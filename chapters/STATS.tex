@@ -1,5 +1,84 @@
 \section{Statistics}
 
+\subsection{Hyphotesis Testing}
+
+Sea $X_1, \dots X_n$ una muestra aleatoria de una distribución con densidad $f(x|\theta)$ con el parámetro $\theta \in \Omega$ (espacio de parámetros). Consideremos $\Omega_0$ y $\Omega_1$ disjuntos tales que $\Omega_0 \cup \Omega_1 = \Omega$. Un test de hipótesis se configura de la siguiente forma 
+
+\begin{equation*}
+\begin{aligned}
+    H_0: \theta \in \Omega_0 \\ 
+    H_A: \theta \in \Omega_1
+\end{aligned}
+\end{equation*}
+
+Donde $H_0$ es la hipótesis nula y $H_A$ la hipótesis alternativa. El objetivo de un test de hipótesis es determinar si bajo $H_0$ es estadísticamente posible muestrear $X_1 , \dots, X_n$, o bien, se debiera considerar $H_1$.
+
+\subsubsection{Mean of Normal Distribution - Known Variance}
+
+Consideremos $X_1 , \dots X_n \sim \mathcal{N}(\mu, \sigma^2)$ con $\sigma^2$ un parámetro conocido. El test que planteamos es 
+\begin{equation*}
+\begin{aligned}
+    H_0: \mu = \mu_0 \\ 
+    H_A: \mu \neq \mu_0
+\end{aligned}
+\end{equation*}
+
+Bajo la hipótesis $H_0$, suponemos que $X_1, \dots X_n \sim \mathcal{N}(\mu_0, \sigma^2)$. Por teorema del límite central, recordemos que 
+
+$$ 
+Z_n = \frac{\overline{X} - \mu_0}{\sigma / \sqrt{n}} \sim \mathcal{N}(0,1)
+$$
+
+Definimos el \textbf{p-valor} según
+$$
+\text{p}_{\text{value}} = P(|Z_n| \geq |z| \hspace{0.1cm} |\hspace{0.1cm} H_0) 
+$$
+
+Con $z$ el valor empírico obtenido de una muestra. Rechazamos la hipótesis nula cuando el p-valor es menor o igual que un nivel de significancia $\alpha$ (usualmente 1\%, 5\%, 10\%).
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.55]{notebooks/STATS/img/two_sided_test.png}
+    \caption{One and Two Sided Test Diagram}
+\end{figure}
+
+
+Cuando rechazamos la hipótesis nula de manera errónea, le llamamos \textbf{error tipo I}, cuando no rechazamos la hipótesis nula siendo esta falsa, le llamamos \textbf{error tipo II}.
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.2]{notebooks/STATS/img/type_of_errors.png}
+    \caption{Types of Errors Diagram}
+\end{figure}
+
+\subsubsection{Mean of Normal Distribution - Unknown Variance}
+
+Cuando no conocemos la varianza de la distribución, el estadístico $Z_n$ se puede escribir según 
+$$ 
+t = \frac{\overline{X} - \mu_0}{s / \sqrt{n}}
+$$
+Con $s$ la desviación estándar de la muestra $X_1 , \dots, X_n$. En este caso, $t \sim T_{\text{student}}(n-1)$ una distribución t-student con $n-1$ grados de libertad. 
+
+\subsubsection{Proportion Test}
+
+Sea $X_1 \dots X_n \sim \text{Bernoulli}(p)$, definimos el test 
+
+\begin{equation*}
+\begin{aligned}
+    H_0: p \geq p_0 \\ 
+    H_A: p < p_0
+\end{aligned}
+\end{equation*}
+
+Nuevamente, bajo la hipótesis nula $p = p_0$ por TCL para $n$ grande
+$$ 
+\overline{X} = \hat{p} \sim \mathcal{N} \left ( p_0 , \frac{p_0(1-p_0)}{n} \right )
+$$
+Es decir, el estadístico queda definido por $Z = \frac{\hat{p} - p_0}{\frac{\sqrt{p_0(1-p_0)}}{n}}$. 
+
+\subsection{AB Testing}
+
+
 \subsection{Causal Inference}
 
 La inferencia causal es el proceso de determinar el \textbf{efecto independiente de una variable} en un sistema más complejo. En general, este proceso es necesario cuando buscamos obtener conclusiones de datos pasados y en los que no es posible realizar un \textit{A/B testing}.
