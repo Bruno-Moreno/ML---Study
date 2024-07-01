@@ -80,6 +80,17 @@ Es decir, el estadístico queda definido por $Z = \frac{\hat{p} - p_0}{\frac{\sq
 
 Un AB Testing es un procedimiento que involucra dividir la población en un grupo de control y un grupo de tratamiento para testear 2 versiones de una única variable. El objetivo es determinar si la estrategia $A$ es más efectiva que una estrategia $B$ para alguna medida de interés.
 
+\subsubsection{Experiment Design}
+
+Es importante \textbf{aislar cualquier fuente de bias} que pueda estar presente entre el grupo de control y el grupo de tratamiento (cuando esto no es posible, le llamamos \textit{Quasi-Experimental} y se debe trabajar con \textit{Causal Inference}). 
+
+Existen distintas formas de realizar esta separación, entre las que se incluyen: 
+
+\begin{enumerate}
+    \item \textbf{Randomized}: Cada participante tiene la misma probabilidad de estar en un grupo o en otro. 
+     \item \textbf{Stratified}: Si existe alguna variable que pueda afectar al experimento, se divide los grupos de tal forma que esta se encuentre balanceada entre los grupos. 
+\end{enumerate}
+
 \subsubsection{Categorical}
 
 Consideremos el testing de una variable categórica (ej: click / no click de un post) con las estrategias $A$ y $B$. Definimos el siguiente test de hipótesis 
@@ -128,7 +139,7 @@ $$ \frac{(o_0 - m_0)^2}{m_0} + \frac{(o_1 - m_1)^2}{m_1} \sim \chi^2_{1} $$
 Para el caso general con $k$ clases, se tiene que 
 $$ \sum_{j=1}^{k}\frac{(o_j - m_j)^2}{m_j} \sim \chi^2_{k-1}$$ 
 
-Lo anterior se conoce como el \textbf{Test Chi-Cuadrado}, el grado de libertad dependerá de la cantidad de variables independientes y los posibles outcomes. Si los datos se encuentran en una tabla de contingencia, los grados de libertad $df$ se pueden calcular según $df = (n_{\text{rows}} - 1)\cdot (n_{\text{cols}} - 1)$
+Lo anterior se conoce como el \textbf{Test Chi-Cuadrado}, el grado de libertad dependerá de la cantidad de variables independientes y los posibles outcomes. Si los datos se encuentran en una tabla de contingencia, los grados de libertad $df$ se pueden calcular según $df = (n_{\text{rows}} - 1)\cdot (n_{\text{cols}} - 1)$.
 
 
 \subsubsection{Continuous}
@@ -155,6 +166,13 @@ Los grados de libertad son aproximados según
 $$
 df = \frac{\left ( \frac{s^2_A}{n} + \frac{s^2_B}{m} \right )^2}{ \frac{\left(\frac{s^2_A}{n}\right)^2}{n-1} + \frac{\left(\frac{s^2_B}{m}\right )^2}{m-1}}
 $$
+
+\subsubsection{Min Sample Size}
+
+Determinar el tamaño mínimo del grupo de control va a depender del nivel de significancia con el que buscamos trabajar ($\alpha$) y también del poder de nuestro test ($1-\beta)$. 
+
+\textbf{SOON}
+
 \subsection{Causal Inference}
 
 La inferencia causal es el proceso de determinar el \textbf{efecto independiente de una variable} en un sistema más complejo. En general, este proceso es necesario cuando buscamos obtener conclusiones de datos pasados y en los que no es posible realizar un \textit{A/B testing}.
