@@ -38,7 +38,7 @@ Con $z$ el valor empírico obtenido de una muestra. Rechazamos la hipótesis nul
 
 \begin{figure}[H]
     \center
-    \includegraphics[scale=0.55]{notebooks/STATS/img/two_sided_test.png}
+    \includegraphics[scale=0.6]{notebooks/STATS/img/two_sided_test.png}
     \caption{One and Two Sided Test Diagram}
 \end{figure}
 
@@ -128,16 +128,33 @@ $$ \frac{(o_0 - m_0)^2}{m_0} + \frac{(o_1 - m_1)^2}{m_1} \sim \chi^2_{1} $$
 Para el caso general con $k$ clases, se tiene que 
 $$ \sum_{j=1}^{k}\frac{(o_j - m_j)^2}{m_j} \sim \chi^2_{k-1}$$ 
 
-Lo anterior se conoce como el \textbf{Test Chi-Cuadrado}, el grado de libertad dependerá de la cantidad de variables independientes y los posibles outcomes. Si los datos se encuentran en una tabla de contingencia, los grados de libertad $df$ se puede calcular según $df = (n_{\text{rows}} - 1)\cdot (n_{\text{cols}} - 1)$
-
-
-
+Lo anterior se conoce como el \textbf{Test Chi-Cuadrado}, el grado de libertad dependerá de la cantidad de variables independientes y los posibles outcomes. Si los datos se encuentran en una tabla de contingencia, los grados de libertad $df$ se pueden calcular según $df = (n_{\text{rows}} - 1)\cdot (n_{\text{cols}} - 1)$
 
 
 \subsubsection{Continuous}
 
-Consideremos el testing de una variable numérica continua (ej: monto de la compra)  
+Consideremos el testing de una variable numérica continua (ej: monto de la compra), en este caso planteamos el siguiente test de hipótesis comparando medias (\textit{Welch's} test)
 
+\begin{equation*}
+\begin{aligned}
+    H_0: \mu_A = \mu_B \\ 
+    H_A: \mu_A \neq \mu_B
+\end{aligned}
+\end{equation*}
+
+Por TCL: 
+$$
+\hat{\mu}_A - \hat{\mu}_B \sim \mathcal{N} \left ( \mu_A - \mu_B , \frac{\sigma^2_A}{n} + \frac{\sigma^2_B}{m} \right )
+$$
+Reemplazando por una estimación de la desviación estándar $s_A$ y $s_B$
+$$
+t = \frac{\hat{\mu}_A - \hat{\mu}_B}{\sqrt{\left ( \frac{s^2_A}{n} + \frac{s^2_B}{m} \right )}} \sim T_{\text{student}}(df)
+$$
+
+Los grados de libertad son aproximados según 
+$$
+df = \frac{\left ( \frac{s^2_A}{n} + \frac{s^2_B}{m} \right )^2}{ \frac{\left(\frac{s^2_A}{n}\right)^2}{n-1} + \frac{\left(\frac{s^2_B}{m}\right )^2}{m-1}}
+$$
 \subsection{Causal Inference}
 
 La inferencia causal es el proceso de determinar el \textbf{efecto independiente de una variable} en un sistema más complejo. En general, este proceso es necesario cuando buscamos obtener conclusiones de datos pasados y en los que no es posible realizar un \textit{A/B testing}.
