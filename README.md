@@ -10,7 +10,7 @@ AI study guide with a series of Jupyter Notebooks with detailed implementation o
 
 ### Instalation: 
 
-[**Python>=3.9**](https://www.python.org/) is required with all
+[**Python≥3.9**](https://www.python.org/) is required with all
 [requirements.txt](notebooks/requirements.txt).
 
 Notebooks may require a specific Python version and libraries. 
