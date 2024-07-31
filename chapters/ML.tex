@@ -428,11 +428,19 @@ En el caso aglomerativo, los clusters más cercanos se juntan para formar un nue
     $$\frac{|A|\cdot|B|}{|A \cup B|}||\mu_A - \mu_B||^2 = \sum_{x \in A \cup B}||x - \mu_{A \cup B}||^2 - \sum_{x \in A}||x - \mu_{A}||^2 - \sum_{x \in B}||x - \mu_{B}||^2$$
 \end{itemize}
 
-Estas divisiones se pueden visualizar a través de \textbf{Dendogramas} y cada criterio cambiará la forma de definir los clusters. 
+Estas divisiones se pueden visualizar a través de \textbf{Dendogramas} y cada criterio cambiará la forma de definir los clusters.
 
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.5]{notebooks/ML/img/complete_dendogram_iris.png}
+    \caption{Complete Dendogram over Iris Dataset}
+\end{figure}
 
-
-
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.5]{notebooks/ML/img/average_dendogram_iris.png}
+    \caption{Average Dendogram over Iris Dataset}
+\end{figure}
 
 \subsection{DBSCAN}
 
