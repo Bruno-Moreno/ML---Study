@@ -418,12 +418,18 @@ Los algoritmos de \textit{Hierarchical Clustering} buscan crear jerarquías de g
     \item \textbf{Divisive}: Comenzar de un grupo y empezar a dividir.
 \end{enumerate}
 
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.25]{notebooks/ML/img/agg_clustering.png}
+    \caption{Agglomerative Clustering Example}
+\end{figure}
+
 En el caso aglomerativo, los clusters más cercanos se juntan para formar un nuevo grupo. Existen distintos criterios para definir cercanía: 
 
 \begin{itemize}
     \item \textbf{Single}: Los elementos más cercanos entre clusters. $$\min_{a \in A, b \in B} d(a,b)$$
     \item \textbf{Complete}: Los elementos más alejados entre clusters.  $$\max_{a \in A, b \in B} d(a,b)$$
-    \item \textbf{Average}: La distancia promedio entre todos los puntos de ambos clusters. $$\frac{1}{|A| \cdot |B|}\sum_{a \in A} \sum_{b in B} d(a,b)$$
+    \item \textbf{Average}: La distancia promedio entre todos los puntos de ambos clusters. $$\frac{1}{|A| \cdot |B|}\sum_{a \in A} \sum_{b \in B} d(a,b)$$
     \item \textbf{Ward}: Minimizar la varianza entre clusters luego de la unión. 
     $$\frac{|A|\cdot|B|}{|A \cup B|}||\mu_A - \mu_B||^2 = \sum_{x \in A \cup B}||x - \mu_{A \cup B}||^2 - \sum_{x \in A}||x - \mu_{A}||^2 - \sum_{x \in B}||x - \mu_{B}||^2$$
 \end{itemize}
