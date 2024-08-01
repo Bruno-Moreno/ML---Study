@@ -495,11 +495,20 @@ $$
     \includegraphics[scale=0.9]{notebooks/ML/img/pca_diagram.png}
     \caption{PCA Diagram}
 \end{figure}
-En problemas de clasificación o clustering, este enfoque puede ser útil para \textbf{visualizar etiquetas/clusters} en un gráfico de 2 o 3 dimensiones, o bien, puede ser utilizado para disminuir y condensar la información de un dataframe (\textit{feature extraction}).    
+En problemas de clasificación o clustering, este enfoque puede ser útil para \textbf{visualizar etiquetas/clusters} en un gráfico de 2 o 3 dimensiones, o bien, puede ser utilizado para disminuir y condensar la información de un dataframe (\textit{feature extraction}). 
+
 \begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
     \center
-    \includegraphics[scale=0.6]{notebooks/ML/img/pca_over_iris.png}
-    \caption{PCA over Iris Dataset}
+    \includegraphics[scale=0.5]{notebooks/ML/img/3d_iris.png}
+    \caption{3D Plot}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+    \center
+    \includegraphics[scale=0.4]{notebooks/ML/img/pca_over_iris.png}
+    \caption{2D PCA Plot}
+\end{subfigure}
+\caption{Iris Dataset}
 \end{figure}
 
 \section{t-Distributed Stochastic Neighbor Embedding (TSNE)}
@@ -508,8 +517,8 @@ El algoritmo de TSNE permite realizar una \textbf{reducción de dimensionalidad 
 
 \begin{figure}[H]
     \center
-    \includegraphics[scale=0.6]{notebooks/ML/img/tsne_over_iris.png}
-    \caption{TSNE over Iris Dataset}
+    \includegraphics[scale=0.5]{notebooks/ML/img/tsne_over_iris.png}
+    \caption{2D TSNE over Iris Dataset}
 \end{figure}
 
 
