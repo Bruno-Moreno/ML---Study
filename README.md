@@ -27,6 +27,7 @@ $ pip install -r requirements.txt
  - [Generative AI](notebooks/GEN)
  - [Natural Language Processing](notebooks/NLP) 
  - [STATS](notebooks/STATS)
+ - [Basic](notebooks/Basic) 
  - [Others](notebooks/Others) 
 
 ## References
