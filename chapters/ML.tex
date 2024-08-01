@@ -479,7 +479,7 @@ Sea $C = \{ C_1 , \dots , C_{k} \}$ el número de clusters generados, el algorit
 
 \section{Principal Component Analysis (PCA)}
 
-El análisis de componentes principales (PCA) es un método no supervisado de \textbf{reducción de dimensionalidad}. Consideremos la matriz con los datos $X \in \mathcal{M}_{N \times M}$, es decir, el dataset con $N$ filas y $M$ columnas. Se define la matriz de covarianza $K = (K_{ij})_{ij} \in \mathcal{M}_{M \times M}$ donde  
+El análisis de componentes principales (PCA) es un método no supervisado de \textbf{reducción de dimensionalidad lineal}. Consideremos la matriz con los datos $X \in \mathcal{M}_{N \times M}$, es decir, el dataset con $N$ filas y $M$ columnas. Se define la matriz de covarianza $K = (K_{ij})_{ij} \in \mathcal{M}_{M \times M}$ donde  
 $$K_{ij} = \text{Cov}(X_i, X_j) = \mathbb{E}((X_i - \mathbb{E}(X_i))(X_j - \mathbb{E}(X_i)) = \mathbb{E}(X_iX_j) - \mathbb{E}(X_i)\mathbb{E}(X_j)$$
 
 Cuando las features $i,j$ son linealmente independientes, entonces $K_{ij} = 0$. Si ambas crecen conjuntamente, entonces su covarianza será positiva y de caso contrario, será negativa. A continuación, se calculan los \textbf{valores y vectores propios}, es decir, los valores $(\lambda_i)_i$ y $(v_i)_i$ que cumplen para todo $i$ la relación 
@@ -495,14 +495,17 @@ $$
     \includegraphics[scale=0.9]{notebooks/ML/img/pca_diagram.png}
     \caption{PCA Diagram}
 \end{figure}
-En problemas de clasificación o clustering, este enfoque puede ser útil para \textbf{visualizar etiquetas/clusters} en un gráfico de 2 o 3 dimensiones, o bien, puede ser utilizado para disminuir y condensar la información de un dataframe. 
+En problemas de clasificación o clustering, este enfoque puede ser útil para \textbf{visualizar etiquetas/clusters} en un gráfico de 2 o 3 dimensiones, o bien, puede ser utilizado para disminuir y condensar la información de un dataframe (\textit{feature extraction}).    
 \begin{figure}[H]
     \center
     \includegraphics[scale=0.6]{notebooks/ML/img/pca_over_iris.png}
     \caption{PCA over Iris Dataset}
 \end{figure}
 
-\section{t-distributed stochastic neighbor embedding (TSNE)}
+\section{t-Distributed Stochastic Neighbor Embedding (TSNE)}
+
+El algoritmo de TSNE permite realizar una \textbf{reducción de dimensionalidad no lineal} de los datos para su simplificación y visualización. A diferencia del algoritmo de PCA, este no permite reducir la dimensión de nuevos datos pues \textbf{no aprende un mapping de espacios} en concreto, más bien, optimiza sobre los datos entregados. Por tanto, no es recomendable su uso para \textit{feature extraction}.
+
 \begin{figure}[H]
     \center
     \includegraphics[scale=0.6]{notebooks/ML/img/tsne_over_iris.png}
