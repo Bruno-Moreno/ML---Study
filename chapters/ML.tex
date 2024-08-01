@@ -1,8 +1,8 @@
-\section{Machine Learning}
+\chapter{Machine Learning}
 
 Consideremos un conjunto de datos $X = (x_1, \dots , x_N)$ donde para cada $i \in {1, \dots, N}$, $x_i = [x_{i}^1 , \dots, x_{i}^M]$ es decir, un conjunto de $N$ datos con $M$ features cada uno. Consideremos además $Y = (y_1, \dots , y_N)$ las etiquetas o labels cada cada dato. En problemas de clasificación binario, $y_i \in \{ 0, 1\}$ y en problemas de clasificación multiclase, $y_i \in \{1, \dots L\}$. Para problemas de regresión, $Y = (y_1, \dots , y_N)$ con cada $y_i \in \mathbb{R}$.
 
-\subsection{Linear Regression}
+\section{Linear Regression}
 
 Un modelo de regresión lineal es un modelo de aprendizaje \textbf{supervisado} utilizado para problemas de \textbf{regresión} y \textbf{clasificación}. Se construye a través de la búsqueda de parámetros $\beta_0, \dots, \beta_M$ que multiplican el input para obtener la predicción. En problemas de regresión, 
 $$\hat{y} = f(\beta) = \beta_0 + \sum_{j=1}^M \beta_j x^j$$
@@ -19,7 +19,7 @@ El problema a optimizar (mínimos errores cuadrados) queda entonces definido por
 $$\min_{\beta} \quad \frac{1}{N}\sum_{i=1}^N(y_i - f(\beta))^2$$
 Cuya solución es cerrada en el caso de estimar una regresión y estimada a través del descenso de gradiente en el caso de una clasificación. 
 
-\subsubsection{Regularization}
+\subsection{Regularization}
 
 Para prevenir el overfitting y que la importancia de los parámetros quede mejor distribuida, es posible agregar a la función un término regularizador de la siguiente forma
 
@@ -49,7 +49,7 @@ Notar que la restricción para el caso \textit{Lasso} hace más probable que las
 \end{figure}
 
 
-\subsection{Decision Trees}
+\section{Decision Trees}
 
 Un árbol de decisión es un modelo de aprendizaje \textbf{supervisado} utilizado para problemas de \textbf{regresión} y \textbf{clasificación}. El objetivo es aprender simples reglas de decisión a partir de las features. 
 
@@ -93,9 +93,9 @@ Donde el primer término es la entropía antes del split y el segundo término e
 En vez de la entropía, es posible usar otro indicador como el \textbf{Gini Index} definido como: 
 $$G(p) = 1 - \sum_{j=1}^L p_j^2$$
 
-\subsection{Random Forest}
+\section{Random Forest}
 
-\subsubsection{Ensemble Methods}
+\subsection{Ensemble Methods}
 
 Los \textbf{métodos de ensamblaje} son aquellos en los que se combinan múltiples estimadores entrenados sobre los datos para generar una predicción más robusta (menor varianza) y generalizada. La predicción final se puede realizar por \textit{Majority Voting}, \textit{Simple Average} o \textit{Weighted Average}.
 
@@ -130,7 +130,7 @@ Para estimar la \textbf{feature importance} en modelos basados en árboles, se p
 
 Para extender esto a \textit{Random Forest}, se toma un promedio entre los distintos árboles de decisión que lo conforman. 
 
-\subsection{Gradient Boosting Algorithm}
+\section{Gradient Boosting Algorithm}
 
 Los modelos de \textit{Gradient Boosting} son algoritmos basados en árboles que pueden ser utilizados para problemas de \textbf{clasificación y regresión}. 
 
@@ -165,7 +165,7 @@ La importancia de las variables es medida de manera similar a un \textit{Random 
 
 Existen otras formas de calcular la importancia de las variables, lo cual se discute en la sección \ref{subsec:shap_values}.
 
-\subsection{Naive Bayes}
+\section{Naive Bayes}
 
 Este modelo de aprendizaje \textbf{supervisado} puede ser utilizado para problemas de clasificación. Este algoritmo es una aplicación del teorema de \textit{Bayes} en el que se asume (\textit{Naive}) la independencia condicional entre los pares de features $x^j$ dado el valor del label $y$
 
@@ -184,7 +184,7 @@ $$
 \hat{y} = \text{argmax}_{y} P(y)\prod_{j=1}^M  P(x^j | y)
 $$
 
-\subsubsection{Gaussian Naive Bayes}
+\subsection{Gaussian Naive Bayes}
 
 Aquí consideramos que $x^{j} | y \sim \mathcal{N}(\mu_j , \sigma_j^2)$ , es decir, cada feature sigue una distribución normal según:
 $$
@@ -201,7 +201,7 @@ La definición anterior funciona bien con tipos de data numéricos.
     \caption{Gaussian Naive Bayes Diagram}
 \end{figure}
 
-\subsubsection{Multinomial Naive Bayes}
+\subsection{Multinomial Naive Bayes}
 
 Aquí consideramos que $x^j | y$ sigue una distribución multinomial donde los parámetros $(p_{j_1}, \dots , p_{j_k})$ de esta distribución son calculados según 
 $$
@@ -212,7 +212,7 @@ Donde $N_{j_k}$ es la cantidad de veces que la categoría $k$ de la feature $j$ 
 
 La definición anterior funciona bien con tipos de datos categóricos. 
 
-\subsection{Support Vector Machines}
+\section{Support Vector Machines}
 
 Las \textit{Support Vector Machines} o SVM, son modelos de aprendizaje \textbf{supervisados} que pueden ser usados para problemas de clasificación y regresión. Se construyen a partir de la búsqueda de un hiper-plano separador y vectores de soporte que maximizan la distancia entre las clases. 
 
@@ -258,7 +258,7 @@ Equivalente a
 \end{equation*}
 Este problema se resuelve utilizando el \textbf{dual} (\textit{quadratic programming}) y es fundamental para la extensión no-lineal de la SVM (\textit{Kernel Trick}). 
 
-\subsubsection{Soft Margin}
+\subsection{Soft Margin}
 
 Los datos son usualmente no linealmente separables, por lo que hay que permitir un error en la clasificación de ciertos puntos (\textit{soft margin}). Este cambio en el problema de optimización se reduce a la siguiente regularización:
 
@@ -269,7 +269,7 @@ Los datos son usualmente no linealmente separables, por lo que hay que permitir 
 \end{aligned}
 \end{equation*}
 
-\subsubsection{Kernel Trick}
+\subsection{Kernel Trick}
 
 En la formulación del problema dual, la función objetivo requiere el cómputo del producto interno entre todos los puntos del conjunto de entrenamiento. Si buscamos proyectar nuestra data a una dimensión mayor (aplicar algún mapeo $\phi$ para hacer la separación posible), esto se puede realizar calculando los productos $ \langle \phi(x_i) , \phi(x_j) \rangle $ para todo $i$ y $j$.
 
@@ -285,7 +285,7 @@ K(x_i , x_j) = \langle \phi(x_i) , \phi(x_j) \rangle
 $$
 donde $K: X \times X \rightarrow \mathbb{R} $ es un kernel de \textit{Mercer} en un espacio de \textit{Hilbert} (posiblemente de dimensión infinita), por lo que solo basta que definamos $K$ para tener un posible mapeo de las características. 
 
-\subsubsection{Kernels}
+\subsection{Kernels}
 
 Para que un kernel pueda utilizarse en el contexto de las SVM, es importante que cumpla con las condiciones de \textit{Mercer}: 
 \begin{itemize}
@@ -315,7 +315,7 @@ Algunos ejemplos de \textit{kernels} que se pueden utilizar son:
     \caption{Kernel Decision Boundaries}
 \end{figure}
 
-\subsection{ARIMA}
+\section{ARIMA}
 
 ARIMA es la abreviación de \textit{Auto-Regressive Integrated Moving Average} y es un método estadístico para realizar forecasting sobre series de tiempo que integra los siguientes conceptos:
 
@@ -337,7 +337,7 @@ Aquí $c$ es una constante y $e$ es un término de error. Los modelos de este ti
     \item $q$ representa la cantidad de lag para el término de error $e$, esto captura el \textit{Moving Average}.
 \end{itemize}
 
-\subsubsection{P Value}
+\subsection{P Value}
 
 En la práctica, es posible determinar el valor de $p$ a través del \textit{Partial Autocorrelation Plot}. Este gráfico muestra la relación de un valor en la serie de tiempo con \textbf{un solo lag} (eliminando relaciones de tiempos intermedios ajustando una regresión lineal y quedándose sólo con el parámetro correspondiente).
 \begin{figure}[H]
@@ -347,7 +347,7 @@ En la práctica, es posible determinar el valor de $p$ a través del \textit{Par
 \end{figure}
 El valor óptimo es el último punto después del cual todos los lags están dentro de las bandas azules (intervalos de confianza), en este caso $p=13$. 
 
-\subsubsection{D Value}
+\subsection{D Value}
 
 El valor de $d$ se puede calcular diferenciando la serie de tiempo hasta encontrar una serie estacionaria. Esto lo podemos medir con un test estadístico de estacionalidad (\textit{Augmented Dickey Fuller Test}).
 
@@ -359,7 +359,7 @@ El valor de $d$ se puede calcular diferenciando la serie de tiempo hasta encontr
 
 Vemos que el $p$-valor en la segunda diferenciación ya es lo suficientemente pequeño para asumir estacionalidad en la serie de tiempo, así $d=2$. 
 
-\subsubsection{Q Value}
+\subsection{Q Value}
 Finalmente, para determinar el valor $q$ es posible ver el \textit{Autocorrelation Plot} que muestra la relación de un valor en la serie de tiempo con \textbf{todos los $p$ lags} anteriores. 
 \begin{figure}[H]
     \center
@@ -373,7 +373,7 @@ En este caso, el último valor anterior a que todos los lag caigan en la zona az
     \caption{ARIMA over Flight Passengers Forecasting}
 \end{figure}
 
-\subsection{K-Means}
+\section{K-Means}
 
 El algoritmo de \textit{K-Means} es un algoritmo \textbf{no supervisado de clustering}. 
 El objetivo es agrupar los datos alrededor de \textbf{centroides} de tal forma en que se minimice la suma de alguna medida de distancia. Vale decir, encontrar el conjunto $ S = \{ S_1 , \dots, S_k \} $ de clusters ($k$ hiperparámetro) tal que
@@ -409,7 +409,7 @@ La selección del hiper-parámetro $k$ se puede hacer utilizando el método del 
 
 En este ejemplo, el valor óptimo de clusters con el \textit{Elbow Method} es $k=3$.  
 
-\subsection{Hierarchical Clustering}
+\section{Hierarchical Clustering}
 
 Los algoritmos de \textit{Hierarchical Clustering} buscan crear jerarquías de grupos conformados por elementos del dataset. Estos pueden ser de 2 categorías: 
 
@@ -448,7 +448,7 @@ Estas divisiones se pueden visualizar a través de \textbf{Dendogramas} y cada c
     \caption{Average Dendogram over Iris Dataset}
 \end{figure}
 
-\subsection{DBSCAN}
+\section{DBSCAN}
 
 El algoritmo DBSCAN (\textit{Density-based spatial clustering of applications with noise}) es un algoritmo basado en densidad que permite resolver problemas de \textbf{clustering} y realizar \textbf{outlier detection}. 
 
@@ -475,7 +475,7 @@ Sea $C = \{ C_1 , \dots , C_{k} \}$ el número de clusters generados, el algorit
 \end{aligned}
 \end{equation*}
 
-\subsection{Principal Component Analysis (PCA)}
+\section{Principal Component Analysis (PCA)}
 
 El análisis de componentes principales (PCA) es un método no supervisado de \textbf{reducción de dimensionalidad}. Consideremos la matriz con los datos $X \in \mathcal{M}_{N \times M}$, es decir, el dataset con $N$ filas y $M$ columnas. Se define la matriz de covarianza $K = (K_{ij})_{ij} \in \mathcal{M}_{M \times M}$ donde  
 $$K_{ij} = \text{Cov}(X_i, X_j) = \mathbb{E}((X_i - \mathbb{E}(X_i))(X_j - \mathbb{E}(X_i)) = \mathbb{E}(X_iX_j) - \mathbb{E}(X_i)\mathbb{E}(X_j)$$

@@ -1,6 +1,6 @@
-\section{Statistics}
+\chapter{Statistics}
 
-\subsection{Hyphotesis Testing}
+\section{Hyphotesis Testing}
 
 Sea $X_1, \dots X_n$ una muestra aleatoria de una distribución con densidad $f(x|\theta)$ con el parámetro $\theta \in \Omega$ (espacio de parámetros). Consideremos $\Omega_0$ y $\Omega_1$ disjuntos tales que $\Omega_0 \cup \Omega_1 = \Omega$. Un test de hipótesis se configura de la siguiente forma 
 
@@ -13,7 +13,7 @@ Sea $X_1, \dots X_n$ una muestra aleatoria de una distribución con densidad $f(
 
 Donde $H_0$ es la hipótesis nula y $H_A$ la hipótesis alternativa. El objetivo de un test de hipótesis es determinar si bajo $H_0$ es estadísticamente posible muestrear $X_1 , \dots, X_n$, o bien, se debiera considerar $H_1$.
 
-\subsubsection{Mean of Normal Distribution - Known Variance}
+\subsection{Mean of Normal Distribution - Known Variance}
 
 Consideremos $X_1 , \dots X_n \sim \mathcal{N}(\mu, \sigma^2)$ con $\sigma^2$ un parámetro conocido. El test que planteamos es 
 \begin{equation*}
@@ -51,7 +51,7 @@ Cuando rechazamos la hipótesis nula de manera errónea, le llamamos \textbf{err
     \caption{Types of Errors Diagram}
 \end{figure}
 
-\subsubsection{Mean of Normal Distribution - Unknown Variance}
+\subsection{Mean of Normal Distribution - Unknown Variance}
 
 Cuando no conocemos la varianza de la distribución, el estadístico $Z_n$ se puede escribir según 
 $$ 
@@ -59,7 +59,7 @@ t = \frac{\overline{X} - \mu_0}{s / \sqrt{n}}
 $$
 Con $s$ la desviación estándar de la muestra $X_1 , \dots, X_n$. En este caso, $t \sim T_{\text{student}}(n-1)$ una distribución t-student con $n-1$ grados de libertad. 
 
-\subsubsection{Proportion Test}
+\subsection{Proportion Test}
 
 Sea $X_1 \dots X_n \sim \text{Bernoulli}(p)$, definimos el test 
 
@@ -76,11 +76,11 @@ $$
 $$
 Es decir, el estadístico queda definido por $Z = \frac{\hat{p} - p_0}{\frac{\sqrt{p_0(1-p_0)}}{n}}$. 
 
-\subsection{AB Testing}
+\section{AB Testing}
 
 Un AB Testing es un procedimiento que involucra dividir la población en un grupo de control y un grupo de tratamiento para testear 2 versiones de una única variable. El objetivo es determinar si la estrategia $A$ es más efectiva que una estrategia $B$ para alguna medida de interés.
 
-\subsubsection{Experiment Design}
+\subsection{Experiment Design}
 
 Es importante \textbf{aislar cualquier fuente de bias} que pueda estar presente entre el grupo de control y el grupo de tratamiento (cuando esto no es posible, le llamamos \textit{Quasi-Experimental} y se debe trabajar con \textit{Causal Inference}). 
 
@@ -91,7 +91,7 @@ Existen distintas formas de realizar esta separación, entre las que se incluyen
      \item \textbf{Stratified}: Si existe alguna variable que pueda afectar al experimento, se divide los grupos de tal forma que esta se encuentre balanceada entre los grupos. 
 \end{enumerate}
 
-\subsubsection{Categorical}
+\subsection{Categorical}
 
 Consideremos el testing de una variable categórica (ej: click / no click de un post) con las estrategias $A$ y $B$. Definimos el siguiente test de hipótesis 
 \begin{equation*}
@@ -142,7 +142,7 @@ $$ \sum_{j=1}^{k}\frac{(o_j - m_j)^2}{m_j} \sim \chi^2_{k-1}$$
 Lo anterior se conoce como el \textbf{Test Chi-Cuadrado}, el grado de libertad dependerá de la cantidad de variables independientes y los posibles outcomes. Si los datos se encuentran en una tabla de contingencia, los grados de libertad $df$ se pueden calcular según $df = (n_{\text{rows}} - 1)\cdot (n_{\text{cols}} - 1)$.
 
 
-\subsubsection{Continuous}
+\subsection{Continuous}
 
 Consideremos el testing de una variable numérica continua (ej: monto de la compra), en este caso planteamos el siguiente test de hipótesis comparando medias (\textit{Welch's} test)
 
@@ -167,13 +167,13 @@ $$
 df = \frac{\left ( \frac{s^2_A}{n} + \frac{s^2_B}{m} \right )^2}{ \frac{\left(\frac{s^2_A}{n}\right)^2}{n-1} + \frac{\left(\frac{s^2_B}{m}\right )^2}{m-1}}
 $$
 
-\subsubsection{Min Sample Size}
+\subsection{Min Sample Size}
 
 Determinar el tamaño mínimo del grupo de control va a depender del nivel de significancia con el que buscamos trabajar ($\alpha$) y también del poder de nuestro test ($1-\beta)$. 
 
 \textbf{SOON}
 
-\subsection{Causal Inference}
+\section{Causal Inference}
 
 La inferencia causal es el proceso de determinar el \textbf{efecto independiente de una variable} en un sistema más complejo. En general, este proceso es necesario cuando buscamos obtener conclusiones de datos pasados y en los que no es posible realizar un \textit{A/B testing}.
 
@@ -207,13 +207,13 @@ Consideremos el siguiente ejemplo en el que buscamos determinar si el efecto de 
 
 Vemos que existe un \textit{selection bias} pues el grupo de tratamiento y control tienen distribuciones de edad distintas. Existen múltiples enfoques para resolver este problema. 
 
-\subsubsection{Matching Imputation}
+\subsection{Matching Imputation}
 
 Es posible utilizar un algoritmo de \textit{Matching} como \textit{NearestNeighbors} para imputar el posible outcome que hubiese tenido un individuo al recibir o no el tratamiento. En nuestro ejemplo, para cada edad de los individuos del grupo de control, buscaríamos al sujeto con la edad más cercana en el grupo de tratamiento e imputaríamos su respuesta al tratamiento y viceversa. 
 
 La efectividad del tratamiento se puede medir a través del promedio de los outcome cuando reciben y cuando no reciben el tratamiento. 
 
-\subsubsection{Meta Learners}
+\subsection{Meta Learners}
 
 Este enfoque plantea utilizar algoritmos de \textit{Machine Learning} para determinar el efecto del tratamiento en el outcome del experimento. Sea $y_i$ el target, $w$ si recibió el tratamiento y $X_i$ el conjunto de variables del modelo, definimos ITE (\textit{Individual Treatment Effect}) según 
 $$
