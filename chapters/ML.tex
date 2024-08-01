@@ -1,5 +1,7 @@
 \chapter{Machine Learning}
 
+\section{Definition}
+
 Consideremos un conjunto de datos $X = (x_1, \dots , x_N)$ donde para cada $i \in {1, \dots, N}$, $x_i = [x_{i}^1 , \dots, x_{i}^M]$ es decir, un conjunto de $N$ datos con $M$ features cada uno. Consideremos además $Y = (y_1, \dots , y_N)$ las etiquetas o labels cada cada dato. En problemas de clasificación binario, $y_i \in \{ 0, 1\}$ y en problemas de clasificación multiclase, $y_i \in \{1, \dots L\}$. Para problemas de regresión, $Y = (y_1, \dots , y_N)$ con cada $y_i \in \mathbb{R}$.
 
 \section{Linear Regression}
@@ -498,6 +500,13 @@ En problemas de clasificación o clustering, este enfoque puede ser útil para \
     \center
     \includegraphics[scale=0.6]{notebooks/ML/img/pca_over_iris.png}
     \caption{PCA over Iris Dataset}
+\end{figure}
+
+\section{t-distributed stochastic neighbor embedding (TSNE)}
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.6]{notebooks/ML/img/tsne_over_iris.png}
+    \caption{TSNE over Iris Dataset}
 \end{figure}
 
 
