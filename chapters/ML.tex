@@ -511,15 +511,40 @@ En problemas de clasificación o clustering, este enfoque puede ser útil para \
 \caption{Iris Dataset}
 \end{figure}
 
-\section{t-Distributed Stochastic Neighbor Embedding (TSNE)}
+\section{t-Distributed Stochastic Neighbor Embedding (t-SNE)}
 
-El algoritmo de TSNE permite realizar una \textbf{reducción de dimensionalidad no lineal} de los datos para su simplificación y visualización. A diferencia del algoritmo de PCA, este no permite reducir la dimensión de nuevos datos pues \textbf{no aprende un mapping de espacios} en concreto, más bien, optimiza sobre los datos entregados. Por tanto, no es recomendable su uso para \textit{feature extraction}.
+El algoritmo de t-SNE permite realizar una \textbf{reducción de dimensionalidad no lineal} de los datos para su simplificación y visualización. A diferencia del algoritmo de PCA, este no permite reducir la dimensión de nuevos datos pues \textbf{no aprende un mapping de espacios} en concreto, más bien, optimiza sobre los datos entregados. Por tanto, no es recomendable su uso para \textit{feature extraction}.
+
+Para realizar esta reducción, en primer lugar se calcula la probabilidad $p_{ij}$ proporcional a la similitud entre los elementos $x_i$, $x_j$ según 
+
+$$
+p_{j|i} = \frac{\exp(-||x_i - x_j||^2 / 2\sigma_i^2)}{\sum_{k \neq i} \exp(-||x_i - x_k||^2 / 2\sigma_i^2)}
+$$
+
+Con $p_{i|i} = 0$. Notar que así $\sum_{j}p_{j|i} = 1$ para todo $i$, es decir, lo anterior define una distribución de probabilidad. Como la similitud entre $i$ y $j$ no es simétrica, definimos 
+$$
+p_{ij} = \frac{p_{i|j} + p_{j|i}}{2N}
+$$
+
+Ahora el objetivo es construir una distribución en una menor dimensionalidad, para este algoritmo, la distribución queda definida para los nuevos puntos $y_i$ según 
+
+$$ 
+q_{ij} = \frac{(1 + ||y_i - y_j||^2)^{-1}}{\sum_k \sum_{l \neq k} (1 + ||y_k - y_j||^2)^{-1}}
+$$
+
+Que resulta en una distribución $t-Student$ con 1 grado de libertad (esta forma de modelar la similitud es conveniente para alejar elementos poco similares). Para finalizar, los valores de $y_i$ son determinados minimizando la K-L divergencia mediante descenso de gradiente estocástico.
+
+$$
+KL(P || Q) = \sum_{i \neq j}p_{ij}\log \frac{p_{ij}}{q_{ij}}
+$$
 
 \begin{figure}[H]
     \center
     \includegraphics[scale=0.5]{notebooks/ML/img/tsne_over_iris.png}
     \caption{2D TSNE over Iris Dataset}
 \end{figure}
+
+
 
 
 
