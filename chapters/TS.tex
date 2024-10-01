@@ -1,8 +1,37 @@
 \chapter{Time Series}
 
-\section{Fourier Transform}
+\section{Fourier Series}
 
-sdlkfjsdf 
+La serie de Fourier es un proceso analítico que permite representar una función $f(t)$ en base a funciones sinusoidales, es decir, 
+
+$$
+f(t) = a_0/2 + \sum_{n=1}^{\infty} (a_n \cos(nt) + b_n \sin(nt))
+$$
+y el objetivo es determinar los coeficientes $a_n$ y $b_n$ que hacen esto posible. Se puede mostrar que
+\begin{equation*}
+\begin{aligned}
+a_0 &= \frac{1}{\pi}\int_{-\pi}^{\pi} f(t)dt \\
+a_n &= \frac{1}{\pi}\int_{-\pi}^{\pi} f(t)cos(nt)dt \quad \forall n > 0 \\ 
+b_n &= \frac{1}{\pi}\int_{-\pi}^{\pi} f(t)sin(nt)dt \quad \forall n > 0
+\end{aligned}
+\end{equation*}
+
+También es posible reescribir esta ecuación mediante notación compleja según 
+$$ 
+f(t) = \sum_{-\infty}^{\infty} c_n e^{int}
+$$
+Donde los coeficientes $c_n$ se calculan según 
+$$
+c_n = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(t)e^{-int}dt
+$$
+
+Esta descomposición es especialmente útil para suavizar funciones al truncar la cantidad de términos sinusoidales de la serie de Fourier. 
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.5]{notebooks/TS/img/fourier_transform_smoothing.png}
+    \caption{Fourier Transform Smoothing}
+\end{figure}
 
 \section{ARIMA}
 
