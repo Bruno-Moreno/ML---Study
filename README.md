@@ -22,7 +22,8 @@ $ pip install -r requirements.txt
 ```
 
 ### Code Structure: 
- - [Machine Learning](notebooks/ML) 
+ - [Machine Learning](notebooks/ML)
+ - [Time Series](notebooks/TS) 
  - [Computer Vision](notebooks/CV)
  - [Generative AI](notebooks/GEN)
  - [Natural Language Processing](notebooks/NLP) 

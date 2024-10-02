@@ -19,7 +19,7 @@ jobs:
         root_file: ai_algorithms.tex  # Name of the Tex File
 
     - name: Upload PDF to Artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: compiled-pdf
         path: ai_algorithms.pdf  # Name of the Tex File
