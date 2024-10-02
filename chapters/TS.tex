@@ -94,3 +94,38 @@ En este caso, el último valor anterior a que todos los lag caigan en la zona az
     \includegraphics[scale=0.5]{notebooks/TS/img/arima_results.png}
     \caption{ARIMA over Flight Passengers Forecasting}
 \end{figure}
+
+\section{ML Forecasting}
+
+Es posible utilizar algoritmos clásicos de \textit{Machine Learning} al adaptar la serie de tiempo a la creación de un dataset en base a \textit{lags}. 
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.15]{notebooks/TS/img/ml_forecast.png}
+    \caption{Machine Learning Forecast Dataset}
+\end{figure}
+
+Este enfoque además permite la incorporación de \textbf{variables exógenas} que enriquecen la predicción del modelo.
+
+El forecasting se realiza de manera iterativa, es decir, se utiliza la predicción anterior como input para la siguiente. Existe otra alternativa que acumula menor incertidumbre al entrenar un modelo distinto para predecir cada tiempo futuro.
+
+\subsection{Residuals Bootstrapping}
+
+Para estimar la incertidumbre de la predicción se puede asumir que erorres futuros serán como los errores pasados. Sampleando de la colección de errores vistos en el pasado, es posible crear múltiples forecast de la siguiente forma 
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.16]{notebooks/TS/img/boostrapped_residuals.png}
+    \caption{Bootstrapped Residuals}
+\end{figure}
+
+Con los $N$ forecast creados, es posible estimar el intervalo de confianza o los parámetros de alguna distribución que represente la incertidumbre.
+
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.5]{notebooks/TS/img/demand_ml_forecasting.png}
+    \caption{Bootstrapping Confidence Interval}
+\end{figure}
+
+Ahora bien, si los residuos siguen una distribución normal, el \textit{boostrapping} sera equivalente a samplear de una distribución normal centrada en 0 y de cierta varianza.
+
