@@ -20,17 +20,21 @@ También es posible reescribir esta ecuación mediante notación compleja según
 $$ 
 f(t) = \sum_{-\infty}^{\infty} c_n e^{int}
 $$
+Notando que 
+$$ 
+\cos(nt) = \frac{e^{int} + e^{-int}}{2} \quad y \quad \sin(nt) = \frac{e^{int} - e^{-int}}{2i} 
+$$
 Donde los coeficientes $c_n$ se calculan según 
 $$
 c_n = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(t)e^{-int}dt
 $$
 
-Esta descomposición es especialmente útil para suavizar funciones al truncar la cantidad de términos sinusoidales de la serie de Fourier. 
+Esta descomposición es especialmente útil para suavizar funciones al truncar la cantidad de términos sinusoidales de su serie de Fourier. 
 
 \begin{figure}[H]
     \center
     \includegraphics[scale=0.5]{notebooks/TS/img/fourier_transform_smoothing.png}
-    \caption{Fourier Transform Smoothing}
+    \caption{Fourier Series Smoothing}
 \end{figure}
 
 \section{ARIMA}
