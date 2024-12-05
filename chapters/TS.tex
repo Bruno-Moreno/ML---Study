@@ -37,6 +37,16 @@ Esta descomposición es especialmente útil para suavizar funciones al truncar l
     \caption{Fourier Series Smoothing}
 \end{figure}
 
+\section{Exponential Smoothing}
+
+Esta método, que permite en principio suavizar series de tiempo, también puede ser utilizado para realizar el forecasting de un paso al futuro. La formulación es simple, sea $\{x_t\}$ la serie de tiempo, se define el paso $s_t$ según 
+$$ 
+s_t = \alpha x_t + (1 - \alpha) s_{t-1} \quad t > 0 
+$$
+Donde $s_0 = x_0$ y $\alpha$ el parámetro de suavizado. Valores cercanos a 1 dan más peso a las observaciones actuales y valores cercanos a 0 aumentan el suavizado de la función. Es importante notar que para forecasting $s_{t+1} = s_{t}$. 
+
+
+
 \section{ARIMA}
 
 ARIMA es la abreviación de \textit{Auto-Regressive Integrated Moving Average} y es un método estadístico para realizar forecasting sobre series de tiempo que integra los siguientes conceptos:
