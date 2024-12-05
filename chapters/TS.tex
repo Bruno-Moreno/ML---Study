@@ -43,7 +43,7 @@ Esta método, que permite en principio suavizar series de tiempo, también puede
 $$ 
 s_t = \alpha x_t + (1 - \alpha) s_{t-1} \quad t > 0 
 $$
-Donde $s_0 = x_0$ y $\alpha$ el parámetro de suavizado. Valores cercanos a 1 dan más peso a las observaciones actuales y valores cercanos a 0 aumentan el suavizado de la función. Es importante notar que para forecasting $s_{t+1} = s_{t}$. 
+Donde $s_0 = x_0$ y $\alpha$ el parámetro de suavizado. Valores cercanos a 1 dan más peso a las observaciones actuales y valores cercanos a 0 aumentan el suavizado de la función. Es importante notar que para forecasting $s_{t+1} = s_{t}$ y también los siguientes pasos futuros serán todos constantes. 
 
 
 

@@ -77,7 +77,7 @@ Existen otras medidas que no dependen del threshold considerado, como:
     
 \end{enumerate}
 
-\subsection{Regression Metrics}
+\subsection{Regression/Forecasting Metrics}
 
 Para problemas de regresión, es posible utilizar las siguientes métricas 
 \begin{enumerate}
@@ -89,6 +89,15 @@ Para problemas de regresión, es posible utilizar las siguientes métricas
     $$ 
     \text{MAE} = \frac{1}{N}\sum_{i=1}^N|y_i - \hat{y}_i|
     $$
+    \item \textbf{MAPE}: El error porcentual absoluto medio definido como 
+    $$ 
+    \text{MAPE} = \frac{1}{N}\sum_{i=1}^N \left | \frac{y_i - \hat{y}_i}{y_i} \right |
+    $$
+    \item \textbf{wMAPE}: El error porcentual absoluto medio pero ponderado según la magnitud de los datos. Esta métrica soluciona el problema de la gran variación porcentual que puede existir en datos de baja magnitud (Real: 1, Predict: 2 vs Real: 40, Predict: 50). 
+    $$ 
+    \text{wMAPE} = \frac{\sum_{i=1}^N w_i \cdot \left | \frac{y_i - \hat{y}_i}{y_i} \right |}{\sum_{i=1}^N w_i} = \frac{\sum_{i=1}^N |y_i| \cdot \left | \frac{y_i - \hat{y}_i}{y_i} \right |}{\sum_{i=1}^N |y_i|} =  \frac{\sum_{i=1}^N  \left | y_i - \hat{y}_i\right |}{\sum_{i=1}^N |y_i|}
+    $$
+    
     \item \textbf{R Squared}: El coeficiente de determinación $R^2$ es ampliamente utilizado para medir el poder predictivo de una regresión lineal. Es un valor que oscila entre 0 y 1 y está definido como 
     $$ 
     R^2 = 1 - \frac{SS_{\text{res}}}{SS_{\text{tot}}}
@@ -108,6 +117,14 @@ Para problemas de regresión, es posible utilizar las siguientes métricas
     $$
 
     La idea es controlar el overfitting al agregar más variables al modelo mejorando el $R^2$ pero no así el $R^2_{\text{Adjusted}}$.
+
+    \item \textbf{Quantile Quality}: Esta métrica, especialmente útil para le medición de la calidad de un cuantil en forecast, se basa en la siguiente premisa: El $q_{0.9}$ debería en promedio, contener el 90\% de los datos. Se define de la siguiente manera: 
+
+    $$
+    QQ(q) = \frac{\sum_{i=1}^N (\mathds{1}_{y^{q}_i \geq y_i})}{N} - q
+    $$
+    Siendo $y^{q}_i$ la predicción de $y_i$ en el cuantil $q$. 
+    
     
 \end{enumerate}
 
