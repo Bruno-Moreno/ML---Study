@@ -69,7 +69,7 @@ Aquí $c$ es una constante y $e$ es un término de error. Los modelos de este ti
     \item $q$ representa la cantidad de lag para el término de error $e$, esto captura el \textit{Moving Average}.
 \end{itemize}
 
-\subsection{P Value}
+\subsection{p Value}
 
 En la práctica, es posible determinar el valor de $p$ a través del \textit{Partial Autocorrelation Plot}. Este gráfico muestra la relación de un valor en la serie de tiempo con \textbf{un solo lag} (eliminando relaciones de tiempos intermedios ajustando una regresión lineal y quedándose sólo con el parámetro correspondiente).
 \begin{figure}[H]
@@ -79,7 +79,7 @@ En la práctica, es posible determinar el valor de $p$ a través del \textit{Par
 \end{figure}
 El valor óptimo es el último punto después del cual todos los lags están dentro de las bandas azules (intervalos de confianza), en este caso $p=13$. 
 
-\subsection{D Value}
+\subsection{d Value}
 
 El valor de $d$ se puede calcular diferenciando la serie de tiempo hasta encontrar una serie estacionaria. Esto lo podemos medir con un test estadístico de estacionalidad (\textit{Augmented Dickey Fuller Test}).
 
@@ -91,7 +91,7 @@ El valor de $d$ se puede calcular diferenciando la serie de tiempo hasta encontr
 
 Vemos que el $p$-valor en la segunda diferenciación ya es lo suficientemente pequeño para asumir estacionalidad en la serie de tiempo, así $d=2$. 
 
-\subsection{Q Value}
+\subsection{q Value}
 Finalmente, para determinar el valor $q$ es posible ver el \textit{Autocorrelation Plot} que muestra la relación de un valor en la serie de tiempo con \textbf{todos los $p$ lags} anteriores. 
 \begin{figure}[H]
     \center
