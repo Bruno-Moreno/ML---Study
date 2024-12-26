@@ -76,7 +76,7 @@ En la práctica, es posible determinar el valor de $p$ a través del \textit{Par
     \includegraphics[scale=0.5]{notebooks/TS/img/partial_autocorrelation.png}
     \caption{Partial Autocorrelation Plot}
 \end{figure}
-El valor óptimo es el último punto después del cual todos los lags están dentro de las bandas azules (intervalos de confianza), en este caso, este punto no es claro pues la serie presenta \textit{seasonality} pero $p=11$ muestra una autocorrelación importante. 
+El valor óptimo es el último punto después del cual, todos los lags están dentro de las bandas azules (intervalos de confianza), en este caso $p = 11$.
 
 \subsection{d Value}
 
@@ -91,13 +91,13 @@ El valor de $d$ se puede calcular diferenciando la serie de tiempo hasta encontr
 Vemos que el $p$-valor en la segunda diferenciación ya es lo suficientemente pequeño para asumir estacionalidad en la serie de tiempo, así $d=2$. 
 
 \subsection{q Value}
-Finalmente, para determinar el valor $q$ es posible ver el \textit{Autocorrelation Plot} que muestra la relación de un valor en la serie de tiempo con \textbf{todos los $p$ lags} anteriores. 
+Finalmente, para determinar el valor $q$ es posible ver el \textit{Autocorrelation Plot} que muestra la relación de un valor en la serie de tiempo con \textbf{todos los $p$ lags} anteriores.
 \begin{figure}[H]
     \center
     \includegraphics[scale=0.5]{notebooks/TS/img/autocorrelation.png}
     \caption{Autocorrelation Plot}
-\end{figure}
-En este caso, el valor $q=12$ muestra una una autocorrelación notable.
+\end{figure}  
+En este caso, este punto no es claro pues la serie presenta \textit{seasonality} pero el valor $q=12$ muestra una una autocorrelación importante.
 
 \begin{figure}[H]
     \center
